@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl"
+                  value="jdbc:mysql://localhost/samsdb?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=GMT%2B8"/>
+        <property name="user" value="samsadmin"/>
+        <property name="password" value="samsadminsamsadmin"/>
+        <!-- 最大空闲时间 -->
+        <property name="maxIdleTime" value="30"/>
+        <!-- 最少几个连接 -->
+        <property name="minPoolSize" value="3"/>
+        <!-- 最多有多少个连接 -->
+        <property name="maxPoolSize" value="30"/>
+        <!-- 初始化池大小 -->
+        <property name="initialPoolSize" value="5"/>
+        <property name="maxStatements" value="50"/>
+    </bean>
+    <!-- 配置Hibernate的sessionFactory实例 -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!-- 配置数据源属性 -->
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <!-- 配置 Hibernate的基本属性 -->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">
+                    org.hibernate.dialect.MySQL8Dialect
+                </prop>
+                <!-- 运行时重新创建表 -->
+                <prop key="hibernate.hbm2ddl.auto">
+                    create
+                </prop>
+                <prop key="hibernate.show_sql">
+                    false
+                </prop>
+                <prop key="hibernate.format_sql">
+                    false
+                </prop>
+                <prop key="hibernate.globally_quoted_identifiers">
+                    true
+                </prop>
+                <prop key="hibernate.current_session_context_class">
+                    org.springframework.orm.hibernate5.SpringSessionContext
+                </prop>
+            </props>
+        </property>
+        <!-- 配置 Hibernate基于注解的实体类包 -->
+        <property name="packagesToScan">
+            <list>
+                <value>com.teddy.entity</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 声明Hibernate事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!-- 基于@Transactional注解方式的事务管理 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
