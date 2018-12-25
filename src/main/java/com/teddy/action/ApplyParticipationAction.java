@@ -1,6 +1,8 @@
 package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.teddy.entity.Activity;
+import com.teddy.entity.Organization;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -10,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.opensymphony.xwork2.Action.SUCCESS;
-
 @Controller
 @Scope("prototype")
 
@@ -20,7 +20,7 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 @Results({@Result(name = "success", type = "json", params = {"root", "resultMap"})})
 @InterceptorRef(value = "json")
 
-public class AdminLoginAction extends ActionSupport {
+public class ApplyParticipationAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
 
     @Getter
@@ -29,13 +29,13 @@ public class AdminLoginAction extends ActionSupport {
 
     @Getter
     @Setter
-    Long id;
+    Activity activity;
 
     @Getter
     @Setter
-    String password;
+    Organization organization;
 
-    @Action(value = "adminLogin")
+    @Action(value = "applyParticipation")
     public String execute(){
         return SUCCESS;
     }

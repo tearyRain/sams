@@ -39,4 +39,9 @@ public class ActivityDao {
         sessionFactory.getCurrentSession().update(activity);
     }
 
+    public int count(){
+        Session session = sessionFactory.getCurrentSession();
+        return (int)session.createQuery("select count(*) from Activity as a").getSingleResult();
+    }
+
 }
