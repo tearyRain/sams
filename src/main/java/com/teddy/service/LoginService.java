@@ -1,6 +1,10 @@
 package com.teddy.service;
 
 import com.teddy.dao.*;
+import com.teddy.entity.Admin;
+import com.teddy.entity.Organization;
+import com.teddy.entity.Sponsor;
+import com.teddy.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,9 +29,6 @@ public class LoginService {
     AttendanceDao attendanceDao;
 
     @Autowired
-    ContactInfoDao contactInfoDao;
-
-    @Autowired
     OrganizationDao organizationDao;
 
     @Autowired
@@ -35,42 +36,23 @@ public class LoginService {
 
 
     boolean checkAdminPassword(Long id, String password) {
-        // TODO
-        return false;
+        Admin admin = adminDao.findById(id);
+        return admin.getPassword().equals(password);
     }
 
     boolean checkStudentPassword(Long id, String password) {
-        // TODO
-        return false;
+        Student student = studentDao.findById(id);
+        return student.getPassword().equals(password);
     }
 
     boolean checkSponsorPassword(Long id, String password) {
-        // TODO
-        return false;
+        Sponsor sponsor = sponsorDao.findById(id);
+        return sponsor.getPassword().equals(password);
     }
 
     boolean checkOrganizationPassword(Long id, String password) {
-        // TODO
-        return false;
+        Organization organization = organizationDao.findById(id);
+        return organization.getPassword().equals(password);
     }
 
-    boolean checkAttendancePassword(Long id, String password) {
-        // TODO
-        return false;
-    }
-
-    boolean checkSupportPassword(Long id, String password) {
-        // TODO
-        return false;
-    }
-
-    boolean checkActivityPassword(Long id, String password) {
-        // TODO
-        return false;
-    }
-
-    boolean checkContactInfoPassword(Long id, String password) {
-        // TODO
-        return false;
-    }
 }

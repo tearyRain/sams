@@ -12,8 +12,8 @@ public class SupportDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void findById(Long id) {
-        sessionFactory.getCurrentSession().find(Support.class, id);
+    public Support findById(Long id) {
+        return sessionFactory.getCurrentSession().find(Support.class, id);
     }
 
     public void save(Support support) {

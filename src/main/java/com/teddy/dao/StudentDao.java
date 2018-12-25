@@ -17,8 +17,8 @@ public class StudentDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void findById(Long id) {
-        sessionFactory.getCurrentSession().find(Student.class, id);
+    public Student findById(Long id) {
+        return sessionFactory.getCurrentSession().find(Student.class, id);
     }
 
     public List<Student> findByName(String name) {
