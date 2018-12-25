@@ -2,7 +2,6 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.teddy.entity.Activity;
-import com.teddy.entity.Organization;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -20,7 +19,7 @@ import java.util.Map;
 @Results({@Result(name = "success", type = "json", params = {"root", "resultMap"})})
 @InterceptorRef(value = "json")
 
-public class ApplyParticipationAction extends ActionSupport {
+public class ViewApplyedVolunteerAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
 
     @Getter
@@ -31,12 +30,9 @@ public class ApplyParticipationAction extends ActionSupport {
     @Setter
     Activity activity;
 
-    @Getter
-    @Setter
-    Organization organization;
-
-    @Action(value = "applyParticipation")
+    @Action(value = "viewApplyedVolunteer")
     public String execute(){
         return SUCCESS;
     }
+
 }
