@@ -9,13 +9,26 @@
             margin-top: 3px;
             margin-bottom: 8px;
             border-radius: 3px;
-            border: 0.5px solid #272780;
+            border: 0.5px solid gray;
             outline: none;
         }
     </style>
-    <script src="/sams/script/lib/jquery-3.3.1.js"></script>
-    <script src="/sams/script/windowReady.js"></script>
+    <script src="../script/lib/jquery-3.3.1.js"></script>
     <script>
+        function clickAction() {
+            $.ajax({
+                url: "add.action",
+                type: "post",
+                data: JSON.stringify({"age": 12, "person": {"name": "aaa", "age": 12}}),
+                contentType: 'application/json',
+                success: function (data, textStatus) {
+                    alert(JSON.stringify(data));
+                    $('#para1').html(JSON.stringify(data));
+                    $('#para2').html(textStatus);
+                },
+                dataType: "json"
+            });
+        }
     </script>
 </head>
 
