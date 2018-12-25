@@ -7,13 +7,13 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 
 /**
- * Sponse
+ * Support
  */
 @Entity
-@Table(name = "SPONSE")
+@Table(name = "SUPPORT")
 @Data
 @NoArgsConstructor
-public class Sponse {
+public class Support {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

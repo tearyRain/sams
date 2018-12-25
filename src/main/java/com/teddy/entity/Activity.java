@@ -60,6 +60,6 @@ public class Activity {
     private Set<Attendance> attendanceSet = new HashSet<>();
 
     @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
-    private Set<Sponse> sponsorSet = new HashSet<>();
+    private Set<Support> sponsorSet = new HashSet<>();
 
 }

@@ -44,7 +44,7 @@ public class Sponsor {
     private Boolean banned;
 
     @OneToMany(mappedBy = "sponsor", cascade = CascadeType.ALL)
-    private Set<Sponse> sponsorSet = new HashSet<>();
+    private Set<Support> sponsorSet = new HashSet<>();
 
 
 }
