@@ -1,6 +1,5 @@
 package com.teddy.action;
 
-import com.teddy.entity.ContactInfo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -17,34 +16,17 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
         @Result(name = "success", location = "/welcome.jsp")
 })
 
-public class SponsorRegisterAction {
-    @Getter
-    @Setter
-    String name;
-
-    @Getter
-    @Setter
-    String password;
-
+public class OrganizationLoginAction {
     @Getter
     @Setter
     String email;
 
     @Getter
     @Setter
-    ContactInfo contact;
+    String password;
 
-    @Getter
-    @Setter
-    String address;
-
-    @Getter
-    @Setter
-    String description;
-
-    @Action(value = "sponsorRegister")
+    @Action(value = "organizationLogin")
     public String execute(){
         return SUCCESS;
     }
-
 }

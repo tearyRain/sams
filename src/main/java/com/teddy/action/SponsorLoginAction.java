@@ -1,6 +1,7 @@
 package com.teddy.action;
 
-import com.opensymphony.xwork2.ActionSupport;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Controller;
         @Result(name = "success", location = "/welcome.jsp")
 })
 
-public class LoginAction extends ActionSupport {
+public class SponsorLoginAction {
+    @Getter
+    @Setter
 
 }
