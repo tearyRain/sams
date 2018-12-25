@@ -3,10 +3,7 @@ package com.teddy.action;
 import com.teddy.entity.ContactInfo;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
+import org.apache.struts2.convention.annotation.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -41,6 +38,7 @@ public class OrganizationRegisterAction {
     @Setter
     String description;
 
+    @Action(value = "organizationRegister")
     public String execute(){
         return SUCCESS;
     }
