@@ -1,15 +1,16 @@
 package com.teddy.service;
 
-import com.teddy.dao.AdminDao;
-import com.teddy.dao.SponsorDao;
-import com.teddy.dao.StudentDao;
+import com.teddy.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
 @Transactional
+@Service
 public class LoginService {
+
+    @Autowired
+    ActivityDao activityDao;
 
     @Autowired
     AdminDao adminDao;
@@ -19,6 +20,19 @@ public class LoginService {
 
     @Autowired
     SponsorDao sponsorDao;
+
+    @Autowired
+    AttendanceDao attendanceDao;
+
+    @Autowired
+    ContactInfoDao contactInfoDao;
+
+    @Autowired
+    OrganizationDao organizationDao;
+
+    @Autowired
+    SupportDao supportDao;
+
 
     boolean checkAdminPassword(Long id, String password) {
         // TODO
@@ -35,7 +49,27 @@ public class LoginService {
         return false;
     }
 
-    boolean checkOrganization(Long id, String password) {
+    boolean checkOrganizationPassword(Long id, String password) {
+        // TODO
+        return false;
+    }
+
+    boolean checkAttendancePassword(Long id, String password) {
+        // TODO
+        return false;
+    }
+
+    boolean checkSupportPassword(Long id, String password) {
+        // TODO
+        return false;
+    }
+
+    boolean checkActivityPassword(Long id, String password) {
+        // TODO
+        return false;
+    }
+
+    boolean checkContactInfoPassword(Long id, String password) {
         // TODO
         return false;
     }
