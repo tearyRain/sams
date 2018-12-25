@@ -27,16 +27,7 @@ body {
 .form-signin .checkbox {
   font-weight: 400;
 }
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
+
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
@@ -74,17 +65,6 @@ body {
   color:rgb(244,71,107);
 }
 
-.login-clean form .form-control {
-  background:#f7f9fc;
-  border:none;
-  border-bottom:1px solid #dfe7f1;
-  border-radius:0;
-  box-shadow:none;
-  outline:none;
-  color:inherit;
-  text-indent:8px;
-  height:42px;
-}
 
 .login-clean form .btn-primary {
   background:#f4476b;
