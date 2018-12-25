@@ -27,4 +27,6 @@ public class Support {
     @Type(type = "text")
     private String description;
 
+    private boolean isChoose;
+
 }
