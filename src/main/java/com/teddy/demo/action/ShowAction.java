@@ -32,10 +32,13 @@ public class ShowAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
 
     @Getter
+    @Setter
     private Map<String, Object> resultMap = new HashMap<>();
 
+    @Getter
     @Setter
     private Person person;
+    @Getter
     @Setter
     private Long age;
 

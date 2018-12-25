@@ -1,6 +1,8 @@
 package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,11 @@ import org.springframework.stereotype.Controller;
 
 public class RegisterAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
+
+    @Getter @Setter
     String username;
+
+    @Getter @Setter
     String password;
 
     @Action(value = "registerMy")
@@ -23,17 +29,4 @@ public class RegisterAction extends ActionSupport {
         return SUCCESS;
     }
 
-    /**
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * @param username the username to set
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

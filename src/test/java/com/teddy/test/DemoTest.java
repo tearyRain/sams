@@ -1,6 +1,5 @@
 package com.teddy.test;
 
-
 import com.teddy.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

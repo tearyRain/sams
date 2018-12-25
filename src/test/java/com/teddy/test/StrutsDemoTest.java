@@ -1,6 +1,8 @@
 package com.teddy.test;
 
 import com.teddy.demo.service.ShowService;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.struts2.StrutsSpringTestCase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,22 +15,22 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 // https://struts.apache.org/plugins/junit/
 // https://blog.csdn.net/TestingGDR/article/details/83755597
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration("classpath:context.xml")
+@ContextConfiguration("classpath*:context.xml")
 public class StrutsDemoTest extends StrutsSpringTestCase {
 
-    @Autowired
+    @Autowired @Getter @Setter
     private ShowService showService;
 
     @Override
     protected String[] getContextLocations() {
-        return new String[]{"classpath:context.xml"};
+        return new String[]{"classpath*:context.xml"};
     }
 
     @Test
-    void test() throws Exception {
-        assertNotNull(showService);
+    public void test() throws Exception {
         request.setContentType("application/json");
-        request.setContent("\"age\" : 12, \"person\":\"{ \"age\" : 78, \"name\" : \"yao\"}".getBytes());
+        equest.setContent("{\"age\" : 12, \"person\":{ \"age\" : 78, \"name\" : \"yao\"}".getBytes());
+        assertNotNull(showService);
         String res = executeAction("add.action");
         String responseContent = response.getContentAsString();
         System.out.println(res);
