@@ -13,8 +13,8 @@ public class AttendanceDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void findById(Long id) {
-        sessionFactory.getCurrentSession().find(Attendance.class, id);
+    public Attendance findById(Long id) {
+        return sessionFactory.getCurrentSession().find(Attendance.class, id);
     }
 
     public void save(Attendance attendance) {

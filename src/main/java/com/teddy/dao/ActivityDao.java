@@ -16,8 +16,8 @@ public class ActivityDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void findById(Long id) {
-        sessionFactory.getCurrentSession().find(Activity.class, id);
+    public Activity findById(Long id) {
+        return sessionFactory.getCurrentSession().find(Activity.class, id);
     }
 
     public List<Activity> findByName(String name) {

@@ -16,8 +16,8 @@ public class SponsorDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void findById(Long id) {
-        sessionFactory.getCurrentSession().find(Sponsor.class, id);
+    public Sponsor findById(Long id) {
+        return sessionFactory.getCurrentSession().find(Sponsor.class, id);
     }
 
     public List<Sponsor> findByName(String name) {

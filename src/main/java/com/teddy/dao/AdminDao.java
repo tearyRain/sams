@@ -14,8 +14,8 @@ public class AdminDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void findById(Long id) {
-        sessionFactory.getCurrentSession().find(Admin.class, id);
+    public Admin findById(Long id) {
+        return sessionFactory.getCurrentSession().find(Admin.class, id);
     }
 
     public void save(Admin admin) {
