@@ -15,26 +15,26 @@ public class StudentDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    void findById(Long id) {
+    public void findById(Long id) {
         sessionFactory.getCurrentSession().find(Student.class, id);
     }
 
-    List<Student> findByName(String name) {
+    public List<Student> findByName(String name) {
         Session session = sessionFactory.getCurrentSession();
         Query<Student> query = session.createQuery("from Student as s where s.name = ?1", Student.class);
         query.setParameter(1, name);
         return query.list();
     }
 
-    void save(Student student) {
+    public void save(Student student) {
         sessionFactory.getCurrentSession().save(student);
     }
 
-    void saveOrUpdate(Student student) {
+    public void saveOrUpdate(Student student) {
         sessionFactory.getCurrentSession().saveOrUpdate(student);
     }
 
-    void update(Student student) {
+    public void update(Student student) {
         sessionFactory.getCurrentSession().update(student);
     }
 }
