@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 @ParentPackage("struts-default")
 @Namespace(value = "/")
 @Results({
-    @Result(name = "success", location = "/welcome.jsp")
+        @Result(name = "success", location = "/welcome.jsp")
 })
 
 public class LoginAction extends ActionSupport {
