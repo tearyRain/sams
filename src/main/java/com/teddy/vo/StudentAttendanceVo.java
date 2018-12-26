@@ -9,8 +9,6 @@ import org.springframework.beans.BeanUtils;
 @NoArgsConstructor
 public class StudentAttendanceVo {
     private StudentVo student;
-    private Byte score;
-    private Boolean voluntary;
 
     public static StudentAttendanceVo fromAttendance(Attendance attendance) {
         if (attendance == null) {

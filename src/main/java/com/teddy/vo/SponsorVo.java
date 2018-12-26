@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 public class SponsorVo {
@@ -15,6 +17,7 @@ public class SponsorVo {
     private String address;
     private String description;
     private Boolean banned;
+    private List<SupportedActivityVo> activityList;
 
     public static SponsorVo fromSponsor(Sponsor sponsor) {
         if (sponsor == null) return null;

@@ -29,6 +29,7 @@ public class ActivityVo {
     private LocalDateTime submittedTime;
 
     private List<StudentAttendanceVo> studentsList;
+    private List<SponsorSupportVo> sponsorsList;
 
     public static ActivityVo fromActivity(Activity activity) {
         if (activity == null) return null;

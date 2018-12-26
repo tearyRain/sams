@@ -2,7 +2,7 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.teddy.entity.Activity;
-import com.teddy.entity.Organization;
+import com.teddy.vo.OrganizationVo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -33,7 +33,7 @@ public class ApplyActivityAction extends ActionSupport {
 
     @Getter
     @Setter
-    Organization organization;
+    OrganizationVo organization;
 
     @Action(value = "applyActivity")
     public String execute(){
