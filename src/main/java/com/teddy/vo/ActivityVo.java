@@ -1,4 +1,4 @@
-package com.teddy.view;
+package com.teddy.vo;
 
 import com.teddy.entity.Activity;
 import com.teddy.entity.CheckStatus;
@@ -12,9 +12,9 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class ActivityView {
+public class ActivityVo {
     private Long id;
-    private OrganizationView organization;
+    private OrganizationVo organization;
     private String name;
     private String description;
     private Integer attendanceNum;
@@ -28,13 +28,13 @@ public class ActivityView {
     private Long studentScoreNum;
     private LocalDateTime submittedTime;
 
-    private List<StudentAttendanceView> studentsList;
+    private List<StudentAttendanceVo> studentsList;
 
-    public static ActivityView fromActivity(Activity activity) {
+    public static ActivityVo fromActivity(Activity activity) {
         if (activity == null) return null;
-        ActivityView activityView = new ActivityView();
+        ActivityVo activityView = new ActivityVo();
         BeanUtils.copyProperties(activity, activityView);
-        activityView.setOrganization(OrganizationView.fromOrganization(activity.getOrganization()));
+        activityView.setOrganization(OrganizationVo.fromOrganization(activity.getOrganization()));
         return activityView;
     }
 

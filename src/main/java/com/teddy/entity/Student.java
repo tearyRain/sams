@@ -8,9 +8,6 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Student
- */
 @Entity
 @Table(name = "STUDENT")
 @Data

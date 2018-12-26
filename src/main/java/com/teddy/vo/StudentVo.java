@@ -1,4 +1,4 @@
-package com.teddy.view;
+package com.teddy.vo;
 
 import com.teddy.entity.Gender;
 import com.teddy.entity.Student;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class StudentView {
+public class StudentVo {
     private Long id;
     private String name;
     private LocalDate birthday;
@@ -21,11 +21,11 @@ public class StudentView {
 
     private LocalDate enrollmentDate;
     private Boolean banned;
-    private List<AttendedActivityView> activityList;
+    private List<AttendedActivityVo> activityList;
 
-    static public StudentView fromStudent(Student student) {
+    static public StudentVo fromStudent(Student student) {
         if (student == null) return null;
-        StudentView studentView = new StudentView();
+        StudentVo studentView = new StudentVo();
         BeanUtils.copyProperties(student, studentView);
         return studentView;
     }

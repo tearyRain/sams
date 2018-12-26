@@ -1,4 +1,4 @@
-package com.teddy.view;
+package com.teddy.vo;
 
 import com.teddy.entity.Sponsor;
 import lombok.Data;
@@ -7,20 +7,20 @@ import org.springframework.beans.BeanUtils;
 
 @Data
 @NoArgsConstructor
-public class SponsorView {
+public class SponsorVo {
     private Long id;
     private String name;
-    private ContactView contact;
+    private ContactVo contact;
     private String email;
     private String address;
     private String description;
     private Boolean banned;
 
-    public static SponsorView fromSponsor(Sponsor sponsor) {
+    public static SponsorVo fromSponsor(Sponsor sponsor) {
         if (sponsor == null) return null;
-        SponsorView sponsorView = new SponsorView();
+        SponsorVo sponsorView = new SponsorVo();
         BeanUtils.copyProperties(sponsor, sponsorView);
-        sponsorView.contact = ContactView.fromContact(sponsor.getContact());
+        sponsorView.contact = ContactVo.fromContact(sponsor.getContact());
         return sponsorView;
     }
 }

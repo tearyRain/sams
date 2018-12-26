@@ -1,4 +1,4 @@
-package com.teddy.view;
+package com.teddy.vo;
 
 import com.teddy.entity.Organization;
 import lombok.Data;
@@ -7,19 +7,19 @@ import org.springframework.beans.BeanUtils;
 
 @Data
 @NoArgsConstructor
-public class OrganizationView {
+public class OrganizationVo {
     private Long id;
     private String name;
-    private ContactView contact;
+    private ContactVo contact;
     private String email;
     private String description;
     private Boolean banned;
 
-    public static OrganizationView fromOrganization(Organization organization) {
+    public static OrganizationVo fromOrganization(Organization organization) {
         if (organization == null) return null;
-        OrganizationView organizationView = new OrganizationView();
+        OrganizationVo organizationView = new OrganizationVo();
         BeanUtils.copyProperties(organization, organizationView);
-        organizationView.setContact(ContactView.fromContact(organization.getContact()));
+        organizationView.setContact(ContactVo.fromContact(organization.getContact()));
         return organizationView;
     }
 }

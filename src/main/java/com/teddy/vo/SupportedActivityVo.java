@@ -1,4 +1,4 @@
-package com.teddy.view;
+package com.teddy.vo;
 
 import com.teddy.entity.Support;
 import lombok.Data;
@@ -7,18 +7,18 @@ import org.springframework.beans.BeanUtils;
 
 @Data
 @NoArgsConstructor
-public class SupportedActivityView {
-    private ActivityView activity;
+public class SupportedActivityVo {
+    private ActivityVo activity;
     private boolean chosen;
     private String description;
 
-    public static SupportedActivityView fromSupport(Support support) {
+    public static SupportedActivityVo fromSupport(Support support) {
         if (support == null) {
             return null;
         }
-        SupportedActivityView supportedActivityView = new SupportedActivityView();
+        SupportedActivityVo supportedActivityView = new SupportedActivityVo();
         BeanUtils.copyProperties(support, supportedActivityView);
-        supportedActivityView.setActivity(ActivityView.fromActivity(support.getActivity()));
+        supportedActivityView.setActivity(ActivityVo.fromActivity(support.getActivity()));
         return supportedActivityView;
     }
 }

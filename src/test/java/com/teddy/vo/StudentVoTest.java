@@ -1,4 +1,4 @@
-package com.teddy.view;
+package com.teddy.vo;
 
 import com.teddy.entity.Gender;
 import com.teddy.entity.Student;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StudentViewTest {
+public class StudentVoTest {
 
     @Test
     void testFromStudent() {
@@ -21,7 +21,7 @@ public class StudentViewTest {
         student.setGender(Gender.FEMALE);
         student.setPhone("128");
         student.setEnrollmentDate(localDate);
-        StudentView studentView = StudentView.fromStudent(student);
+        StudentVo studentView = StudentVo.fromStudent(student);
 
         assertEquals(new Long(12L), studentView.getId());
         assertEquals("送", studentView.getName());

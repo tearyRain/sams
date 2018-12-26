@@ -1,4 +1,4 @@
-package com.teddy.view;
+package com.teddy.vo;
 
 import com.teddy.entity.Support;
 import lombok.Data;
@@ -7,18 +7,18 @@ import org.springframework.beans.BeanUtils;
 
 @Data
 @NoArgsConstructor
-public class SponsorSupportView {
-    private SponsorView sponsor;
+public class SponsorSupportVo {
+    private SponsorVo sponsor;
     private boolean chosen;
     private String description;
 
-    public static SponsorSupportView fromSupport(Support support) {
+    public static SponsorSupportVo fromSupport(Support support) {
         if (support == null) {
             return null;
         }
-        SponsorSupportView sponsorSupportView = new SponsorSupportView();
+        SponsorSupportVo sponsorSupportView = new SponsorSupportVo();
         BeanUtils.copyProperties(support, sponsorSupportView);
-        sponsorSupportView.setSponsor(SponsorView.fromSponsor(support.getSponsor()));
+        sponsorSupportView.setSponsor(SponsorVo.fromSponsor(support.getSponsor()));
         return sponsorSupportView;
     }
 }

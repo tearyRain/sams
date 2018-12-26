@@ -1,4 +1,4 @@
-package com.teddy.view;
+package com.teddy.vo;
 
 import com.teddy.entity.Attendance;
 import lombok.Data;
@@ -7,18 +7,18 @@ import org.springframework.beans.BeanUtils;
 
 @Data
 @NoArgsConstructor
-public class AttendedActivityView {
-    private ActivityView activity;
+public class AttendedActivityVo {
+    private ActivityVo activity;
     private Byte score;
     private Boolean voluntary;
 
-    public static AttendedActivityView fromAttendance(Attendance attendance) {
+    public static AttendedActivityVo fromAttendance(Attendance attendance) {
         if (attendance == null) {
             return null;
         }
-        AttendedActivityView attendedActivityView = new AttendedActivityView();
+        AttendedActivityVo attendedActivityView = new AttendedActivityVo();
         BeanUtils.copyProperties(attendance, attendedActivityView);
-        attendedActivityView.setActivity(ActivityView.fromActivity(attendance.getActivity()));
+        attendedActivityView.setActivity(ActivityVo.fromActivity(attendance.getActivity()));
         return attendedActivityView;
     }
 }

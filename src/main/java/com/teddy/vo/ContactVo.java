@@ -1,4 +1,4 @@
-package com.teddy.view;
+package com.teddy.vo;
 
 import com.teddy.entity.ContactInfo;
 import com.teddy.entity.Gender;
@@ -8,13 +8,13 @@ import org.springframework.beans.BeanUtils;
 
 @Data
 @NoArgsConstructor
-public class ContactView {
+public class ContactVo {
     private String name;
     private String phone;
     private Gender gender;
 
-    static public ContactView fromContact(ContactInfo contactInfo) {
-        ContactView contactView = new ContactView();
+    static public ContactVo fromContact(ContactInfo contactInfo) {
+        ContactVo contactView = new ContactVo();
         BeanUtils.copyProperties(contactInfo, contactView);
         return contactView;
     }
