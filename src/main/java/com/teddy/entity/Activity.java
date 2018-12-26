@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,11 +40,9 @@ public class Activity {
     @Type(type = "text")
     private String sponsorRequired;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startTime;
+    private LocalDateTime startTime;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endTime;
+    private LocalDateTime endTime;
 
     @Enumerated(EnumType.ORDINAL)
     private CheckStatus checkStatus;
@@ -53,8 +51,7 @@ public class Activity {
 
     private Long studentScoreNum;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date submittedTime;
+    private LocalDateTime submittedTime;
 
     @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
     private Set<Attendance> attendanceSet = new HashSet<>();

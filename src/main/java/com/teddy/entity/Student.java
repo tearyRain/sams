@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,8 +25,7 @@ public class Student {
     @Column(length = 32)
     private String password;
 
-    @Temporal(TemporalType.DATE)
-    private Date birthday;
+    private LocalDate birthday;
 
     @Convert(converter = GenderConverter.class)
     private Gender gender;
@@ -34,8 +33,7 @@ public class Student {
     @Column(length = 127)
     private String phone;
 
-    @Temporal(TemporalType.DATE)
-    private Date enrollmentDate;
+    private LocalDate enrollmentDate;
 
     private Boolean banned;
 
