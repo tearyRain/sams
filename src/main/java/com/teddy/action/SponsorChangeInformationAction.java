@@ -1,5 +1,7 @@
 package com.teddy.action;
 
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.entity.Sponsor;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,17 +15,20 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 @Scope("prototype")
 @ParentPackage("struts-default")
 @Namespace(value = "/")
-@Results({
-        @Result(name = "success", location = "/welcome.jsp")
+@Results({@Result(name = "success", type = "chain", params = {"root", "resultMap"}),
+        @Result(name = "input", type = "chain", params = {"actionName", "validateError"})})
+@InterceptorRefs(value = {
+        @InterceptorRef("json"),
+        @InterceptorRef("defaultStack")
 })
 
-public class SponsorChangeInformationAction {
+public class SponsorChangeInformationAction extends ActionSupport {
     @Getter
     @Setter
     Sponsor sponsor;
 
-    @Action(value = "sponsorChangeInformation")
-
+    @Validations()
+    @Action(value = "/sponsorChangeInformation")
     public String execute(){
         return SUCCESS;
     }

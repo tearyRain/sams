@@ -1,6 +1,7 @@
 package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.entity.Activity;
 import com.teddy.entity.Organization;
 import lombok.Getter;
@@ -19,8 +20,12 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 
 @ParentPackage("json-default")
 @Namespace(value = "/")
-@Results({@Result(name = "success", type = "json", params = {"root", "resultMap"})})
-@InterceptorRef(value = "json")
+@Results({@Result(name = "success", type = "chain", params = {"root", "resultMap"}),
+        @Result(name = "input", type = "chain", params = {"actionName", "validateError"})})
+@InterceptorRefs(value = {
+        @InterceptorRef("json"),
+        @InterceptorRef("defaultStack")
+})
 
 public class EvaluateActivityAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
@@ -37,7 +42,8 @@ public class EvaluateActivityAction extends ActionSupport {
     @Setter
     Organization organization;
 
-    @Action(value = "evaluateActivity")
+    @Validations()
+    @Action(value = "/evaluateActivity")
     public String execute(){
         return SUCCESS;
     }

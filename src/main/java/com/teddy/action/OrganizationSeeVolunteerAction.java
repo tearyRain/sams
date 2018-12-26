@@ -1,5 +1,7 @@
 package com.teddy.action;
 
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.entity.Activity;
 import com.teddy.entity.Student;
 import com.teddy.entity.Attendance;
@@ -15,11 +17,14 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 @Scope("prototype")
 @ParentPackage("struts-default")
 @Namespace(value = "/")
-@Results({
-        @Result(name = "success", location = "/welcome.jsp")
+@Results({@Result(name = "success", type = "chain", params = {"root", "resultMap"}),
+        @Result(name = "input", type = "chain", params = {"actionName", "validateError"})})
+@InterceptorRefs(value = {
+        @InterceptorRef("json"),
+        @InterceptorRef("defaultStack")
 })
 
-public class OrganizationSeeVolunteerAction {
+public class OrganizationSeeVolunteerAction extends ActionSupport {
     @Getter
     @Setter
     Activity activity;
@@ -32,8 +37,8 @@ public class OrganizationSeeVolunteerAction {
     @Setter
     Attendance attendance;
 
-    @Action(value = "organizationSeeVolunteer")
-
+    @Validations()
+    @Action(value = "/organizationSeeVolunteer")
     public String execute(){
         return SUCCESS;
     }
