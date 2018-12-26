@@ -9,11 +9,9 @@ import org.apache.struts2.convention.annotation.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import static com.opensymphony.xwork2.Action.SUCCESS;
-
 @Controller
 @Scope("prototype")
-@ParentPackage("struts-default")
+@ParentPackage("json-default")
 @Namespace(value = "/")
 @Results({@Result(name = "success", type = "chain", params = {"root", "resultMap"}),
         @Result(name = "input", type = "chain", params = {"actionName", "validateError"})})

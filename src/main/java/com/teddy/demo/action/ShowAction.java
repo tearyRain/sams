@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
-
 /**
  * ShowAction
  */
@@ -25,8 +24,14 @@ import java.util.Map;
 
 @ParentPackage("json-default")
 @Namespace(value = "/")
-@Results({@Result(name = "success", type = "json", params = {"root", "resultMap"})})
-@InterceptorRef(value = "json")
+@Results(value = {
+        @Result(name = "success", type = "json", params = {"root", "resultMap"}),
+        @Result(name = "fail", type = "chain", params = {"actionName", "sh"})
+})
+@InterceptorRefs(value = {
+        @InterceptorRef("json"),
+        @InterceptorRef("defaultStack")
+})
 public class ShowAction extends ActionSupport {
 
     private static final long serialVersionUID = 1L;
@@ -47,13 +52,14 @@ public class ShowAction extends ActionSupport {
 
     @Action(value = "/add")
     public String execute() {
-        if (age != null) {
-            person.setAge(showService.yourAge());
-        }
-        resultMap.put("person", person);
-        age += 1;
-        resultMap.put("status", true);
-        resultMap.put("age", age);
-        return SUCCESS;
+        return "fail";
+//        if (age != null) {
+//            person.setAge(showService.yourAge());
+//        }
+//        resultMap.put("person", person);
+//        age += 1;
+//        resultMap.put("status", true);
+//        resultMap.put("age", age);
+//        return SUCCESS;
     }
 }

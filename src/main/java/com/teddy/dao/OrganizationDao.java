@@ -20,6 +20,10 @@ public class OrganizationDao {
         return sessionFactory.getCurrentSession().find(Organization.class, id);
     }
 
+    public Organization findByEmail(String email) {
+        return sessionFactory.getCurrentSession().byNaturalId(Organization.class).load();
+    }
+
     List<Organization> findByName(String name) {
         Session session = sessionFactory.getCurrentSession();
         Query<Organization> query = session.createQuery("from Organization as s where s.name = ?1", Organization.class);

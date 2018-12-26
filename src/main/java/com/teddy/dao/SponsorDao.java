@@ -20,6 +20,10 @@ public class SponsorDao {
         return sessionFactory.getCurrentSession().find(Sponsor.class, id);
     }
 
+    public Sponsor findByEmail(String email) {
+        return sessionFactory.getCurrentSession().byNaturalId(Sponsor.class).load();
+    }
+
     public List<Sponsor> findByName(String name) {
         Session session = sessionFactory.getCurrentSession();
         Query<Sponsor> query = session.createQuery("from Sponsor as s where s.name = ?1", Sponsor.class);
