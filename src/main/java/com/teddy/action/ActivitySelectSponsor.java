@@ -2,7 +2,7 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.teddy.service.OrganizationService;
+import com.teddy.service.ActivityService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -14,24 +14,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <b>action:</b> organizationLogin.action <br>
- * <b>function:</b> 组织登录 <br>
+ * <b>action:</b> activitySelectSponsor.action <br>
+ * <b>function:</b> 活动选择赞助商 <br>
  * <b>progress:</b> finish
  * <h2>call standard:</h2>
  * <h3>how to call</h3>
  * <pre>
  * {
- *     "email" : _email,
- *     "password" : _password
+ *     "activityId" : _activityId
+ *     "sponsorId" : _sponsorId
  * }
  * </pre>
  * <h3>success call</h3>
  * <pre>
  * {
  *     "message" : "success",
- *     "data" : {
- *         "id" : _id
- *     }
+ *     "data" : null
  * }
  * </pre>
  * <h3>failure call</h3>
@@ -44,7 +42,6 @@ import java.util.Map;
 
 @Controller
 @Scope("prototype")
-
 @ParentPackage("json-default")
 @Namespace(value = "/")
 @Results({@Result(name = "success", type = "chain", params = {"root", "resultMap"}),
@@ -54,32 +51,28 @@ import java.util.Map;
         @InterceptorRef("defaultStack")
 })
 
-public class OrganizationLoginAction extends ActionSupport {
+public class ActivitySelectSponsor extends ActionSupport {
     @Autowired
-    private OrganizationService organizationService;
-
-    private HashMap<String, Object> data = new HashMap<>();
+    private ActivityService activityService;
 
     @Getter
     private Map<String, Object> resultMap = new HashMap<>();
 
     @Setter
-    String email;
+    private Long activityId;
 
     @Setter
-    String password;
+    private Long sponsorId;
 
     @Validations()
-    @Action(value = "/organizationLogin")
-    public String execute(){
-        Long id = organizationService.login(email, password);
-        if (id != null) {
-            resultMap.put("message", "success");
-            data.put("id", id);
-            resultMap.put("data", data);
-        } else {
-            resultMap.put("message", "");
+    @Action(value = "/activitySelectSponsor")
+    public String execute() {
+        boolean ret = activityService.selectSponsor(activityId, sponsorId);
+        if (ret) {
             resultMap.put("data", null);
+            resultMap.put("message", "success");
+        } else {
+            resultMap.put("message", "failure");
         }
         return SUCCESS;
     }
