@@ -4,7 +4,11 @@ import com.teddy.dao.SponsorDao;
 import com.teddy.entity.Sponsor;
 import com.teddy.vo.SponsorVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@Transactional
 public class SponsorService {
     @Autowired
     SponsorDao sponsorDao;

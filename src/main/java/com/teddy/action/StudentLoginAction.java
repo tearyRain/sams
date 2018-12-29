@@ -3,7 +3,6 @@ package com.teddy.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.teddy.service.StudentService;
 import com.teddy.util.jsonSpec;
-import com.teddy.vo.StudentVo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,11 +43,10 @@ public class StudentLoginAction extends ActionSupport implements jsonSpec {
         boolean checkResult = studentService.checkPassword(id, password);
         if (checkResult) {
             resultMap.put(JSON_SUCCESS, true);
+            resultMap.put(JSON_DATA, null);
         } else {
-            resultMap.put(JSON_ERROR, false);
-            StudentVo student = new StudentVo();
-            student.setBirthday(LocalDate.now());
-            resultMap.put(JSON_DATA, student);
+            resultMap.put(JSON_ERROR, true);
+            resultMap.put(JSON_MESSAGE, "登录失败");
         }
         return SUCCESS;
     }
