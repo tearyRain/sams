@@ -1,5 +1,6 @@
 package com.teddy.dao;
 
+import com.teddy.entity.Activity;
 import com.teddy.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -38,5 +39,13 @@ public class StudentDao {
 
     public void update(Student student) {
         sessionFactory.getCurrentSession().update(student);
+    }
+
+    public List<Activity> findParticipatedActivity(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Activity> query = session.createQuery(
+                "select Activity from Attendance , Activity " +
+                        "where Attendance.activity = Activity and Attendance.student.id = ?1", Activity.class);
+        return query.list();
     }
 }

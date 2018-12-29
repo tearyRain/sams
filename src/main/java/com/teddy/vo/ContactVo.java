@@ -18,4 +18,10 @@ public class ContactVo {
         BeanUtils.copyProperties(contactInfo, contactView);
         return contactView;
     }
+
+    public ContactInfo toContact(){
+        ContactInfo contactInfo = new ContactInfo();
+        BeanUtils.copyProperties(this, contactInfo);
+        return contactInfo;
+    }
 }

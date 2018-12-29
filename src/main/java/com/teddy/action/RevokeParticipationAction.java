@@ -11,6 +11,33 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <b>action:</b> revokeParticipation.action <br>
+ * <b>function:</b> 学生退出活动参加（不包括志愿者活动） <br>
+ * <b>progress:</b> todo
+ * <h2>call standard:</h2>
+ * <h3>how to call</h3>
+ * <pre>
+ * {
+ *     "sponsor" : &sponsorVo,
+ *     "activityId" : _activityId
+ * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : null
+ * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg
+ * }
+ * </pre>
+ */
+
 @Controller
 @Scope("prototype")
 

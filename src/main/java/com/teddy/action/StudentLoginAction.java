@@ -12,6 +12,36 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * <b>action:</b> viewParticipatedActivity.action <br>
+ * <b>function:</b> 查询学生参与的活动 <br>
+ * <b>progress:</b> todo
+ * <h2> call standard: </h2>
+ * <h3>how to call</h3>
+ * <pre>
+ * {
+ *     "studentId" : _studentId
+ * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : {
+ *         "id" : _id
+ *     }
+ * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg
+ * }
+ * </pre>
+ */
+
+
 @Controller
 @Scope("prototype")
 @ParentPackage("json-default")
@@ -31,6 +61,8 @@ public class StudentLoginAction extends ActionSupport {
     @Getter
     private Map<String, Object> resultMap = new HashMap<>();
 
+    private Map<String, Object> data = new HashMap<>();
+
     @Setter
     Long id;
 
@@ -41,9 +73,11 @@ public class StudentLoginAction extends ActionSupport {
     public String execute(){
         boolean checkResult = studentService.checkPassword(id, password);
         if (checkResult) {
-            resultMap.put("success", true);
+            resultMap.put("message", "success");
+            data.put("id", id);
+            resultMap.put("data", data);
         } else {
-            resultMap.put("success", false);
+            resultMap.put("message", "");
         }
         return SUCCESS;
     }

@@ -12,6 +12,36 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <b>action:</b> viewAppliedVolunteer.action <br>
+ * <b>function:</b> 查看学生已参加的所有志愿者活动，分页查询 <br>
+ * <b>progress:</b> todo
+ * <h2> call standard: </h2>
+ * <h3>how to call</h3>
+ * <pre>
+ * {
+ *     "pageNo" : _pageNo,
+ *     "pageSize" : _pageSize,
+ *     "studentId" : _studentId
+ * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : {
+ *         "activity" : [ ... &activityVo]
+ *     }
+ * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg
+ * }
+ * </pre>
+ */
+
 @Controller
 @Scope("prototype")
 
@@ -24,20 +54,18 @@ import java.util.Map;
         @InterceptorRef("defaultStack")
 })
 
-public class ViewApplyedVolunteerAction extends ActionSupport {
+public class ViewAppliedVolunteerAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
-
+    @Getter
+    @Setter
+    Activity activity;
     @Getter
     @Setter
     private Map<String, Object> resultMap = new HashMap<>();
 
-    @Getter
-    @Setter
-    Activity activity;
-
     @Validations()
-    @Action(value = "/viewApplyedVolunteer")
-    public String execute(){
+    @Action(value = "/viewAppliedVolunteer")
+    public String execute() {
         return SUCCESS;
     }
 

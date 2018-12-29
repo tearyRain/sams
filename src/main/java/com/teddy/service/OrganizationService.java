@@ -4,18 +4,22 @@ import com.teddy.dao.OrganizationDao;
 import com.teddy.entity.Organization;
 import com.teddy.vo.OrganizationVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@Transactional
 public class OrganizationService {
     @Autowired
     OrganizationDao OrganizationDao;
 
-    public boolean checkPassword(String email, String password) {
+    public Long login(String email, String password) {
         assert email != null;
-        Organization Organization = OrganizationDao.findByEmail(email);
-        if (Organization == null) {
-            return false;
+        Organization organization = OrganizationDao.findByEmail(email);
+        if (organization != null && organization.getPassword().equals(password) && !organization.getBanned()) {
+            return organization.getId();
         }
-        return Organization.getPassword().equals(password);
+        return null;
     }
 
     public OrganizationVo findById(Long id) {
@@ -25,4 +29,6 @@ public class OrganizationService {
     public OrganizationVo findByEmail(String email) {
         return OrganizationVo.fromOrganization(OrganizationDao.findByEmail(email));
     }
+
+
 }

@@ -11,6 +11,33 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <b>action:</b> modifyStudentPassword.action <br>
+ * <b>function:</b> 学生修改密码 <br>
+ * <b>progress:</b> todo
+ * <h2>call standard:</h2>
+ * <h3>how to call</h3>
+ * <pre>
+ * {
+ *     "studentId" : _studentId
+ *     "password" : _password
+ * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : null
+ * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg
+ * }
+ * </pre>
+ */
+
 @Controller
 @Scope("prototype")
 

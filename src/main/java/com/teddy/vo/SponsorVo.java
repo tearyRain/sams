@@ -26,4 +26,10 @@ public class SponsorVo {
         sponsorView.contact = ContactVo.fromContact(sponsor.getContact());
         return sponsorView;
     }
+
+    public Sponsor toSponsor(){
+        Sponsor sponsor = new Sponsor();
+        BeanUtils.copyProperties(this, sponsor);
+        return sponsor;
+    }
 }

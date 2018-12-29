@@ -13,7 +13,35 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.opensymphony.xwork2.Action.SUCCESS;
+/**
+ * <b>action:</b> viewCommentActivity.action <br>
+ * <b>function:</b> 查看所有需要评分的活动,分页查询 <br>
+ * <b>progress:</b> todo
+ * <h2>call standard: </h2>
+ * <h3>how to call</h3>
+ * <pre>
+ * {
+ *     "pageNo" : _pageNo,
+ *     "pageSize" : _pageSize,
+ *     "studentId" : _studentId
+ * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : {
+ *         "activity" : [ ... &activityVo]
+ *     }
+ * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg
+ * }
+ * </pre>
+ */
 
 @Controller
 @Scope("prototype")

@@ -1,5 +1,6 @@
 package com.teddy.vo;
 
+import com.teddy.entity.Sponsor;
 import com.teddy.entity.Support;
 import lombok.Data;
 import lombok.NoArgsConstructor;
