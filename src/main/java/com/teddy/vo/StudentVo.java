@@ -30,6 +30,12 @@ public class StudentVo {
         return studentView;
     }
 
+    public Student toStudent(StudentVo studentVo){
+        Student student = new Student();
+        BeanUtils.copyProperties(student, studentVo);
+        return student;
+    }
+
     @JSON(format = "yyyy-MM-dd")
     public LocalDate getBirthday() {
         return birthday;

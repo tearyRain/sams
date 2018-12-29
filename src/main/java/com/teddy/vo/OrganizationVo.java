@@ -22,4 +22,10 @@ public class OrganizationVo {
         organizationView.setContact(ContactVo.fromContact(organization.getContact()));
         return organizationView;
     }
+
+    public Organization toOrganization(OrganizationVo organizationVo){
+        Organization organization = new Organization();
+        BeanUtils.copyProperties(organization, organizationVo);
+        return organization;
+    }
 }

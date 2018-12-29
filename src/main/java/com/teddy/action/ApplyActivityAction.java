@@ -15,7 +15,7 @@ import java.util.Map;
  * <b>action:</b> applyActivity.action <br>
  * <b>function:</b> 学生申请参与活动（不作为志愿者） <br>
  * <b>progress:</b> todo
- * call standard:
+ * <h2>call standard:</h2>
  * <h3>how to call</h3>
  * <pre>
  * {

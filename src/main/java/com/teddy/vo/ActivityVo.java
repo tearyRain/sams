@@ -39,6 +39,12 @@ public class ActivityVo {
         return activityView;
     }
 
+    public Activity toActivity(ActivityVo activityVo){
+        Activity activity = new Activity();
+        BeanUtils.copyProperties(activity, activityVo);
+        return activity;
+    }
+
     @JSON(format = "yyyy-MM-dd HH:mm:ss")
     public LocalDateTime getStartTime() {
         return startTime;

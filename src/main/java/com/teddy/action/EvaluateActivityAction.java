@@ -17,7 +17,7 @@ import java.util.Map;
  * <b>action:</b> evaluateActivity.action <br>
  * <b>function:</b> 学生给活动打分 <br>
  * <b>progress:</b> todo
- * call standard:
+ * <h2>call standard:</h2>
  * <h3>how to call</h3>
  * <pre>
  * {
