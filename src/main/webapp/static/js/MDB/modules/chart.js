@@ -2754,7 +2754,7 @@ module.exports = function(Chart) {
 				_datasetIndex: me.index,
 				_index: index,
 
-                // Desired vo properties
+				// Desired view properties
 				_model: {
 					x: centerX + chart.offsetX,
 					y: centerY + chart.offsetY,
@@ -3032,7 +3032,7 @@ module.exports = function(Chart) {
 			point._datasetIndex = datasetIndex;
 			point._index = index;
 
-            // Desired vo properties
+			// Desired view properties
 			point._model = {
 				x: x,
 				y: y,
@@ -3374,7 +3374,7 @@ module.exports = function(Chart) {
 				_index: index,
 				_scale: scale,
 
-                // Desired vo properties
+				// Desired view properties
 				_model: {
 					x: centerX,
 					y: centerY,
@@ -3539,7 +3539,7 @@ module.exports = function(Chart) {
 				_index: index,
 				_scale: scale,
 
-                // Desired vo properties
+				// Desired view properties
 				_model: {
 					x: reset ? scale.xCenter : pointPosition.x, // value not used in dataset scale, but we want a consistent API between scales
 					y: reset ? scale.yCenter : pointPosition.y,
@@ -5149,8 +5149,8 @@ function interpolate(start, view, model, ease) {
 
 		target = model[key];
 
-        // if a value is added to the model after pivot() has been called, the vo
-        // doesn't contain it, so let's initialize the vo to the target value.
+		// if a value is added to the model after pivot() has been called, the view
+		// doesn't contain it, so let's initialize the view to the target value.
 		if (!view.hasOwnProperty(key)) {
 			view[key] = target;
 		}
@@ -8695,7 +8695,7 @@ var exports = module.exports = Element.extend({
 		var opts = me._options;
 
 		// Need to regenerate the model because its faster than using extend and it is necessary due to the optimization in Chart.Element.transition
-        // that does _view = _model if ease === 1. This causes the 2nd tooltip update to set properties in both the vo and model at the same time
+		// that does _view = _model if ease === 1. This causes the 2nd tooltip update to set properties in both the view and model at the same time
 		// which breaks any animations.
 		var existingModel = me._model;
 		var model = me._model = getBaseModel(opts);
