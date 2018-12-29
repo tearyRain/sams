@@ -27,9 +27,9 @@ public class SponsorVo {
         return sponsorView;
     }
 
-    public Sponsor toSponsor(SponsorVo sponsorVo){
+    public Sponsor toSponsor(){
         Sponsor sponsor = new Sponsor();
-        BeanUtils.copyProperties(sponsor, sponsorVo);
+        BeanUtils.copyProperties(this, sponsor);
         return sponsor;
     }
 }
