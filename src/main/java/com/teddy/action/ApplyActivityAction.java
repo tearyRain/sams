@@ -65,6 +65,7 @@ public class ApplyActivityAction extends ActionSupport {
     @Validations()
     @Action(value = "/applyActivity")
     public String execute(){
+
         return SUCCESS;
     }
 }

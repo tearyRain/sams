@@ -9,6 +9,7 @@ import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +64,8 @@ public class SponsorLoginAction extends ActionSupport {
     @Setter
     private Map<String, Object> resultMap = new HashMap<>();
 
+    private Map<String, Object> data = new HashMap<>();
+
     @Getter
     @Setter
     String email;
@@ -74,16 +77,14 @@ public class SponsorLoginAction extends ActionSupport {
     @Validations()
     @Action(value = "/sponsorLogin")
     public String execute(){
-//        Long id = sponsorService.login(email, password);
-//        if (id != null) {
-//            resultMap.put(JSON_SUCCESS, true);
-//            HashMap<String, Object> data = new HashMap<>();
-//            data.put("id", id);
-//            resultMap.put(JSON_DATA, data);
-//        } else {
-//            resultMap.put(JSON_ERROR, true);
-//            resultMap.put(JSON_MESSAGE, "");
-//        }
+        Long sponsorId = sponsorService.login(email, password);
+        if(sponsorId == null)
+            resultMap.put("message", "failure");
+        else{
+            resultMap.put("message", "success");
+            data.put("id", sponsorId);
+            resultMap.put("data", data);
+        }
         return SUCCESS;
     }
 
