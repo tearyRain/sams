@@ -2,6 +2,8 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.teddy.service.StudentService;
+import com.teddy.util.jsonSpec;
+import com.teddy.vo.StudentVo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +25,7 @@ import java.util.Map;
         @InterceptorRef("json"),
         @InterceptorRef("defaultStack")
 })
-public class StudentLoginAction extends ActionSupport {
+public class StudentLoginAction extends ActionSupport implements jsonSpec {
     private static final long serialVersionUID = 1L;
 
     @Autowired
@@ -41,9 +44,12 @@ public class StudentLoginAction extends ActionSupport {
     public String execute(){
         boolean checkResult = studentService.checkPassword(id, password);
         if (checkResult) {
-            resultMap.put("success", true);
+            resultMap.put(JSON_SUCCESS, true);
         } else {
-            resultMap.put("success", false);
+            resultMap.put(JSON_ERROR, false);
+            StudentVo student = new StudentVo();
+            student.setBirthday(LocalDate.now());
+            resultMap.put(JSON_DATA, student);
         }
         return SUCCESS;
     }
