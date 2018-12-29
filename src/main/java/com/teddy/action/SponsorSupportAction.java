@@ -12,9 +12,9 @@ import org.springframework.stereotype.Controller;
 
 /**
  * <b>action:</b> sponsorSupport.action <br>
- * <b>function:</b> 赞助商赞助活动 <br>
+ * <b>function:</b> 赞助商请求赞助活动 <br>
  * <b>progress:</b> todo
- * call standard:
+ * <h2> call standard: </h2>
  * <h3>how to call</h3>
  * <pre>
  * {

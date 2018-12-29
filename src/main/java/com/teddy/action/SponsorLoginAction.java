@@ -13,6 +13,35 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <b>action:</b> sponsorLogin.action <br>
+ * <b>function:</b> 赞助商登录 <br>
+ * <b>progress:</b> todo
+ * <h2>call standard:</h2>
+ * <h3>how to call</h3>
+ * <pre>
+ * {
+ *     "email" : _email,
+ *     "password": _password
+ * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : {
+ *         "id" : _id
+ *     }
+ * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg
+ * }
+ * </pre>
+ */
+
 @Controller
 @Scope("prototype")
 

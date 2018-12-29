@@ -17,7 +17,7 @@ import java.util.Map;
  * <b>action:</b> viewCommentActivity.action <br>
  * <b>function:</b> 查看所有需要评分的活动,分页查询 <br>
  * <b>progress:</b> todo
- * call standard:
+ * <h2>call standard: </h2>
  * <h3>how to call</h3>
  * <pre>
  * {
@@ -30,7 +30,9 @@ import java.util.Map;
  * <pre>
  * {
  *     "message" : "success",
- *     "data" : [ ... &activityVo]
+ *     "data" : {
+ *         "activity" : [ ... &activityVo]
+ *     }
  * }
  * </pre>
  * <h3>failure call</h3>

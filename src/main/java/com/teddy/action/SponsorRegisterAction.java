@@ -12,7 +12,34 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.opensymphony.xwork2.Action.SUCCESS;
+/**
+ * <b>action:</b> sponsorRegister.action <br>
+ * <b>function:</b> 赞助商注册 <br>
+ * <b>progress:</b> todo
+ * <h2> call standard: </h2>
+ * <h3>how to call</h3>
+ * <pre>
+ * {
+ *     "sponsor" : &sponsorVo,
+ *     "password": _password
+ * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : {
+ *         "id" : _id
+ *     }
+ * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg
+ * }
+ * </pre>
+ */
 
 @Controller
 @Scope("prototype")

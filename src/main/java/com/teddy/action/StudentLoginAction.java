@@ -16,8 +16,8 @@ import java.util.Map;
 /**
  * <b>action:</b> viewParticipatedActivity.action <br>
  * <b>function:</b> 查询学生参与的活动 <br>
- * <b>progress:</b> finish
- * call standard:
+ * <b>progress:</b> todo
+ * <h2> call standard: </h2>
  * <h3>how to call</h3>
  * <pre>
  * {
