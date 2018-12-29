@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -26,8 +25,7 @@ public class ValidateErrorAction extends ActionSupport {
 
     @Action(value = "/validateError")
     public String execute(){
-        resultMap.put("success", false);
-        resultMap.put("errorMsg", getFieldErrors());
+        resultMap.put("message", "invalid input!");
         return SUCCESS;
     }
 }

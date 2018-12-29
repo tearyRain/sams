@@ -12,6 +12,34 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <b>action:</b> viewApplyedVolunteer.action <br>
+ * <b>function:</b> 查看学生已参加的所有志愿者活动，分页查询 <br>
+ * <b>progress:</b> todo
+ * call standard:
+ * <h3>how to call</h3>
+ * <pre>
+ * {
+ *     "pageNo" : _pageNo,
+ *     "pageSize" : _pageSize,
+ *     "studentId" : _studentId
+ * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : [ ... &activityVo]
+ * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg
+ * }
+ * </pre>
+ */
+
 @Controller
 @Scope("prototype")
 

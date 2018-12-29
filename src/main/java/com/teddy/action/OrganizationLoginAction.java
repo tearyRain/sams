@@ -3,7 +3,6 @@ package com.teddy.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.service.OrganizationService;
-import com.teddy.util.jsonSpec;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -13,6 +12,35 @@ import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * <b>action:</b> organizationLogin.action <br>
+ * <b>function:</b> 组织登录 <br>
+ * <b>progress:</b> finish
+ * <h2>call standard:</h2>
+ * <h3>how to call</h3>
+ * <pre>
+ * {
+ *     "email" : _email,
+ *     "password" : _password
+ * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : {
+ *         "id" : _id
+ *     }
+ * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg,
+ * }
+ * </pre>
+ */
 
 @Controller
 @Scope("prototype")
@@ -26,7 +54,7 @@ import java.util.Map;
         @InterceptorRef("defaultStack")
 })
 
-public class OrganizationLoginAction extends ActionSupport implements jsonSpec {
+public class OrganizationLoginAction extends ActionSupport {
     @Autowired
     private OrganizationService organizationService;
 
@@ -44,13 +72,13 @@ public class OrganizationLoginAction extends ActionSupport implements jsonSpec {
     public String execute(){
         Long id = organizationService.login(email, password);
         if (id != null) {
-            resultMap.put(JSON_SUCCESS, true);
+            resultMap.put("message", "success");
             HashMap<String, Object> data = new HashMap<>();
             data.put("id", id);
-            resultMap.put(JSON_DATA, data);
+            resultMap.put("data", data);
         } else {
-            resultMap.put(JSON_ERROR, true);
-            resultMap.put(JSON_MESSAGE, "");
+            resultMap.put("message", "");
+            resultMap.put("data", null);
         }
         return SUCCESS;
     }

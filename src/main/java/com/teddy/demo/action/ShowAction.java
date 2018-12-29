@@ -9,9 +9,6 @@ import org.apache.struts2.convention.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
-import java.util.HashMap;
-import java.util.Map;
 /**
  * ShowAction
  */
@@ -25,7 +22,7 @@ import java.util.Map;
 @ParentPackage("json-default")
 @Namespace(value = "/")
 @Results(value = {
-        @Result(name = "success", type = "json", params = {"root", "resultMap"}),
+        @Result(name = "success", type = "json", params = {"root", "this"}),
         @Result(name = "fail", type = "chain", params = {"actionName", "sh"})
 })
 @InterceptorRefs(value = {
@@ -36,14 +33,13 @@ public class ShowAction extends ActionSupport {
 
     private static final long serialVersionUID = 1L;
 
-    @Getter
     @Setter
-    private Map<String, Object> resultMap = new HashMap<>();
+    @Getter
+    private Person person;
 
     @Getter
-    @Setter
-    private Person person;
-    @Getter
+    private Boolean status;
+
     @Setter
     private Long age;
 
@@ -52,14 +48,12 @@ public class ShowAction extends ActionSupport {
 
     @Action(value = "/add")
     public String execute() {
-        return "fail";
-//        if (age != null) {
-//            person.setAge(showService.yourAge());
-//        }
-//        resultMap.put("person", person);
-//        age += 1;
-//        resultMap.put("status", true);
-//        resultMap.put("age", age);
-//        return SUCCESS;
+//        return "success";
+        if (age != null) {
+            person.setAge(showService.yourAge());
+        }
+        status = true;
+        age += 1;
+        return SUCCESS;
     }
 }

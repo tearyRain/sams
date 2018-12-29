@@ -3,7 +3,6 @@ package com.teddy.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.service.StudentService;
-import com.teddy.util.jsonSpec;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -14,15 +13,30 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
- * success output
+ * <b>action:</b> viewParticipatedActivity.action <br>
+ * <b>function:</b> 查询学生所参与的所有活动 <br>
+ * <b>progress:</b> finish
+ * call standard:
+ * <h3>how to call</h3>
+ * <pre>
  * {
- * success: true,
- * data:{
- * activities: [  #activityVo* ]
+ *     "studentId" : _studentId
  * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : [ ... &activityVo ]
  * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg
+ * }
+ * </pre>
  */
 
 @Controller
@@ -37,22 +51,22 @@ import java.util.Map;
         @InterceptorRef("defaultStack")
 })
 
-public class ViewParticipatedActivityAction extends ActionSupport implements jsonSpec {
+public class ViewParticipatedActivityAction extends ActionSupport {
+
+    @Autowired
+    private StudentService studentService;
 
     @Setter
     Long studentId;
 
     @Getter
     private Map<String, Object> resultMap = new HashMap<>();
-    @Autowired
-    private StudentService studentService;
 
     @Validations()
     @Action(value = "/viewParticipatedActivity")
     public String execute(){
-        resultMap.put(JSON_SUCCESS, "true");
-        resultMap.put(JSON_DATA, studentService.findParticipatedActivity(studentId));
+        resultMap.put("message", "success");
+        resultMap.put("data", studentService.findParticipatedActivity(studentId));
         return SUCCESS;
     }
-
 }

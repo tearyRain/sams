@@ -13,6 +13,32 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <b>action:</b> applyVolunteer.action <br>
+ * <b>function:</b> 学生申请作为志愿者参与活动 <br>
+ * <b>progress:</b> todo
+ * call standard:
+ * <h3>how to call</h3>
+ * <pre>
+ * {
+ *     "studentId" : _studentId,
+ *     "activityId" : _activityId
+ * }
+ * </pre>
+ * <h3>success call</h3>
+ * <pre>
+ * {
+ *     "message" : "success",
+ *     "data" : null
+ * }
+ * </pre>
+ * <h3>failure call</h3>
+ * <pre>
+ * {
+ *      "message" : _errorMsg
+ * }
+ * </pre>
+ */
 @Controller
 @Scope("prototype")
 
