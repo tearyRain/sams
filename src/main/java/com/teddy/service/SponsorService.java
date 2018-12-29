@@ -22,6 +22,14 @@ public class SponsorService {
         return sponsor.getPassword().equals(password);
     }
 
+    public Long login(String email, String password) {
+        assert email != null;
+        Sponsor sponsor = sponsorDao.findByEmail(email);
+        if (sponsor != null && sponsor.getPassword().equals(password) && !sponsor.getBanned()) {
+            return sponsor.getId();
+        }
+        return null;
+    }
     public SponsorVo findById(Long id) {
         return SponsorVo.fromSponsor(sponsorDao.findById(id));
     }
