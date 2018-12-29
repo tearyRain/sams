@@ -2,8 +2,6 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.teddy.entity.Activity;
-import com.teddy.vo.OrganizationVo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -29,16 +27,13 @@ public class ApplyActivityAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
 
     @Getter
-    @Setter
     private Map<String, Object> resultMap = new HashMap<>();
 
-    @Getter
     @Setter
-    Activity activity;
+    Long activityId;
 
-    @Getter
     @Setter
-    OrganizationVo organization;
+    Long organizationId;
 
     @Validations()
     @Action(value = "/applyActivity")

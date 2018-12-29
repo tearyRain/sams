@@ -29,4 +29,6 @@ public class OrganizationService {
     public OrganizationVo findByEmail(String email) {
         return OrganizationVo.fromOrganization(OrganizationDao.findByEmail(email));
     }
+
+
 }
