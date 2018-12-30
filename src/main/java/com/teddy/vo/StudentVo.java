@@ -30,9 +30,9 @@ public class StudentVo {
         return studentView;
     }
 
-    public Student toStudent(){
+    public Student toStudent(StudentVo studentVo) {
         Student student = new Student();
-        BeanUtils.copyProperties(this, student);
+        BeanUtils.copyProperties(student, studentVo);
         return student;
     }
 

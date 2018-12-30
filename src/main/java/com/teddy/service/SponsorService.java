@@ -48,7 +48,7 @@ public class SponsorService {
             return false;
 
         sponsorVo.setId(null);
-        sponsorDao.save(sponsorVo.toSponsor());
+        sponsorDao.save(sponsorVo.toSponsor(sponsorVo));
         return true;
     }
 

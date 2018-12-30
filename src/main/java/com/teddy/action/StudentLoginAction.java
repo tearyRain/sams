@@ -14,14 +14,15 @@ import java.util.Map;
 
 
 /**
- * <b>action:</b> viewParticipatedActivity.action <br>
+ * <b>action:</b> studentLogin.action <br>
  * <b>function:</b> 查询学生参与的活动 <br>
  * <b>progress:</b> todo
  * <h2> call standard: </h2>
  * <h3>how to call</h3>
  * <pre>
  * {
- *     "studentId" : _studentId
+ *     "studentId" : _studentId,
+ *     "password" :_password
  * }
  * </pre>
  * <h3>success call</h3>
@@ -64,20 +65,20 @@ public class StudentLoginAction extends ActionSupport {
     private Map<String, Object> data = new HashMap<>();
 
     @Setter
-    Long id;
+    Long studentId;
 
-    @Getter
+    @Setter
     String password;
 
     @Action(value = "/studentLogin")
     public String execute(){
-        boolean checkResult = studentService.checkPassword(id, password);
+        boolean checkResult = studentService.checkPassword(studentId, password);
         if (checkResult) {
             resultMap.put("message", "success");
-            data.put("id", id);
+            data.put("id", studentId);
             resultMap.put("data", data);
         } else {
-            resultMap.put("message", "");
+            resultMap.put("message", "failure");
         }
         return SUCCESS;
     }
