@@ -40,20 +40,19 @@ public class SponsorService {
         return SponsorVo.fromSponsor(sponsorDao.findByEmail(email));
     }
 
-    public boolean register(SponsorVo sponsorVo){
+    public Long register(SponsorVo sponsorVo) {
         if(sponsorVo == null)
-            return false;
-
+            return null;
         Sponsor sponsor = sponsorDao.findByEmail(sponsorVo.getEmail());
         if(sponsor != null)
-            return false;
-
+            return null;
         sponsorVo.setId(null);
-        sponsorDao.save(sponsorVo.toSponsor(sponsorVo));
-        return true;
+        Sponsor newSponsor = sponsorVo.toSponsor(sponsorVo);
+        sponsorDao.save(newSponsor);
+        return newSponsor.getId();
     }
 
-    public boolean update(SponsorVo sponsorVo){
+    public boolean changeInformation(SponsorVo sponsorVo) {
         if(sponsorVo == null)
             return false;
 
@@ -69,7 +68,7 @@ public class SponsorService {
         return true;
     }
 
-    public boolean modifyPassword(Long id, String password){
+    public boolean changePassword(Long id, String password) {
         Sponsor sponsor = sponsorDao.findById(id);
         if(sponsor == null)
             return false;

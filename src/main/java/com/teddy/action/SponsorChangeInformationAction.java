@@ -68,7 +68,7 @@ public class SponsorChangeInformationAction extends ActionSupport {
     @Validations()
     @Action(value = "/sponsorChangeInformation")
     public String execute(){
-        boolean result = sponsorService.update(sponsorVo);
+        boolean result = sponsorService.changeInformation(sponsorVo);
         if(result){
             resultMap.put("message", "success");
             resultMap.put("data", null);

@@ -44,8 +44,27 @@ public class StudentDao {
     public List<Activity> findParticipatedActivity(Long id) {
         Session session = sessionFactory.getCurrentSession();
         Query<Activity> query = session.createQuery(
-                "select Activity from Attendance , Activity " +
-                        "where Attendance.activity = Activity and Attendance.student.id = ?1", Activity.class);
+                "select activity from Attendance " +
+                        "where voluntary = false and student.id = ?1", Activity.class);
+        query.setParameter(1, id);
+        return query.list();
+    }
+
+    public List<Activity> findAppliedVolunteer(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Activity> query = session.createQuery(
+                "select activity from Attendance " +
+                        "where voluntary = true and student.id = ?1", Activity.class);
+        query.setParameter(1, id);
+        return query.list();
+    }
+
+    public List<Activity> findCommentActivity(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Activity> query = session.createQuery(
+                "select activity from Attendance " +
+                        "where score = null and student.id = ?1", Activity.class);
+        query.setParameter(1, id);
         return query.list();
     }
 }

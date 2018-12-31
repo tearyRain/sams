@@ -43,4 +43,16 @@ public class AttendanceDao {
     public void update(Attendance attendance) {
         sessionFactory.getCurrentSession().update(attendance);
     }
+
+    public Attendance findByStudentAndActivity(Long studentId, Long activityId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Attendance> query = session.createQuery(
+                "from Attendance where student.id = ?1 and activity.id = ?2", Attendance.class);
+        query.setParameter(1, studentId).setParameter(2, activityId);
+        return query.getSingleResult();
+    }
+
+    public void delete(Attendance attendance) {
+        sessionFactory.getCurrentSession().delete(attendance);
+    }
 }

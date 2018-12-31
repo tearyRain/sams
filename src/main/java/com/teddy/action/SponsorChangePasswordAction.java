@@ -3,7 +3,6 @@ package com.teddy.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.service.SponsorService;
-import com.teddy.vo.SponsorVo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -17,7 +16,7 @@ import java.util.Map;
 /**
  * <b>action:</b> sponsorChangePassword.action <br>
  * <b>function:</b> 赞助商修改密码 <br>
- * <b>progress:</b> todo
+ * <b>progress:</b> finish
  * <h2>call standard:</h2>
  * <h3>how to call</h3>
  * <pre>
@@ -72,7 +71,7 @@ public class SponsorChangePasswordAction extends ActionSupport {
     @Validations()
     @Action(value = "/sponsorChangePassword")
     public String execute(){
-        boolean result = sponsorService.modifyPassword(sponsorId, password);
+        boolean result = sponsorService.changePassword(sponsorId, password);
         if(result){
             resultMap.put("message", "success");
             resultMap.put("data", null);

@@ -2,7 +2,6 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.teddy.entity.Activity;
 import com.teddy.entity.Organization;
 import com.teddy.service.ActivityService;
 import com.teddy.vo.ActivityVo;
@@ -59,38 +58,27 @@ import java.util.Map;
 })
 
 public class ViewActivityAction extends ActionSupport {
-    private static final long serialVersionUID = 1L;
 
     @Setter
-    Long pageNo;
-    @Getter
+    Integer pageNo;
     @Setter
-    private Map<String, Object> resultMap = new HashMap<>();
-    @Setter
-    Long pageSize;
-
-    @Getter
-    @Setter
-    Activity activity;
-    @Autowired
-    private ActivityService activityService;
-    private Map<String, Object> data = new HashMap<>();
-
+    Integer pageSize;
     @Getter
     @Setter
     Organization organization;
+    @Autowired
+    private ActivityService activityService;
+    @Getter
+    private Map<String, Object> resultMap = new HashMap<>();
+    private Map<String, Object> data = new HashMap<>();
 
     @Validations()
     @Action(value = "/viewActivity")
-    public String execute(){
+    public String execute() {
         List<ActivityVo> list = activityService.viewActivity(pageNo, pageSize);
-        if (list.size() != 0) {
-            resultMap.put("message", "success");
-            data.put("activity", list);
-            resultMap.put("data", data);
-        } else {
-            resultMap.put("message", "null");
-        }
+        resultMap.put("message", "success");
+        data.put("activity", list);
+        resultMap.put("data", data);
         return SUCCESS;
     }
 }

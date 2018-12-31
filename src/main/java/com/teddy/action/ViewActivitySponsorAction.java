@@ -2,9 +2,6 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.teddy.entity.Activity;
-import com.teddy.entity.CheckStatus;
-import com.teddy.entity.Support;
 import com.teddy.service.ActivityService;
 import com.teddy.vo.SponsorVo;
 import lombok.Getter;
@@ -33,7 +30,9 @@ import java.util.Map;
  * <pre>
  * {
  *     "message" : "success",
- *     "data" : [ ... &SponsorVo ]
+ *     "data" : {
+ *         "sponsor" : [ ... &SponsorVo ]
+ *     }
  * }
  * </pre>
  * <h3>failure call</h3>
@@ -56,24 +55,13 @@ import java.util.Map;
 })
 
 public class ViewActivitySponsorAction extends ActionSupport {
-    @Getter
-    @Setter
-    Activity activity;
-
+    @Autowired
+    private ActivityService activityService;
     @Setter
     Long activityId;
     @Getter
-    @Setter
-    CheckStatus checkStatus;
-    @Autowired
-    private ActivityService activityService;
-    @Getter
-    @Setter
     private Map<String, Object> resultMap = new HashMap<>();
     private Map<String, Object> data = new HashMap<>();
-    @Getter
-    @Setter
-    Support support;
 
     @Validations()
     @Action(value = "/viewActivitySponsor")
@@ -84,7 +72,7 @@ public class ViewActivitySponsorAction extends ActionSupport {
             data.put("sponsor", list);
             resultMap.put("data", data);
         } else {
-            resultMap.put("message", "null");
+            resultMap.put("message", "failure");
         }
         return SUCCESS;
     }

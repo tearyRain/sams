@@ -2,9 +2,10 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
+import com.teddy.service.StudentService;
 import lombok.Getter;
-import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -14,7 +15,7 @@ import java.util.Map;
 /**
  * <b>action:</b> revokeParticipation.action <br>
  * <b>function:</b> 学生退出活动参加（不包括志愿者活动） <br>
- * <b>progress:</b> todo
+ * <b>progress:</b> finish
  * <h2>call standard:</h2>
  * <h3>how to call</h3>
  * <pre>
@@ -51,15 +52,27 @@ import java.util.Map;
 })
 
 public class RevokeParticipationAction extends ActionSupport {
-    private static final long serialVersionUID = 1L;
+    @Autowired
+    private StudentService studentService;
 
     @Getter
-    @Setter
     private Map<String, Object> resultMap = new HashMap<>();
 
+    @Getter
+    private Long studentId;
+
+    @Getter
+    private Long activityId;
+
     @Validations()
-    @Action(value = "/revokeParticipation")
+    @Action(value = "/revokeVolunteer")
     public String execute(){
+        boolean ret = studentService.revokeParticipation(studentId, activityId);
+        if (ret) {
+            resultMap.put("message", "success");
+            resultMap.put("data", null);
+        } else
+            resultMap.put("message", "failure");
         return SUCCESS;
     }
 }
