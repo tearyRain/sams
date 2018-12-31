@@ -2,10 +2,6 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.teddy.entity.Activity;
-import com.teddy.entity.Sponsor;
-import com.teddy.entity.Support;
-import com.teddy.service.SponsorService;
 import com.teddy.service.SupportService;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +16,7 @@ import java.util.Map;
 /**
  * <b>action:</b> sponsorSupport.action <br>
  * <b>function:</b> 赞助商请求赞助活动 <br>
- * <b>progress:</b> todo
+ * <b>progress:</b> finish
  * <h2> call standard: </h2>
  * <h3>how to call</h3>
  * <pre>
@@ -57,37 +53,32 @@ import java.util.Map;
 })
 
 public class SponsorSupportAction extends ActionSupport {
-    private static final long serialVersionUID = 1L;
+    @Autowired
+    SupportService supportService;
 
     @Getter
-    @Setter
     private Map<String, Object> resultMap = new HashMap<>();
 
-    @Getter
     @Setter
     Long sponsorId;
 
-    @Getter
     @Setter
     Long activityId;
 
-    @Getter
     @Setter
     String description;
 
-    @Autowired
-    SupportService supportService;
 
     @Validations()
     @Action(value = "/sponsorSupport")
     public String execute(){
-        boolean result = supportService.insert(sponsorId, activityId, description);
+        boolean result = supportService.applySupport(sponsorId, activityId, description);
         if(result){
             resultMap.put("message", "success");
             resultMap.put("data", null);
-        }
-        else
+        } else {
             resultMap.put("message", "failure");
+        }
         return SUCCESS;
     }
 
