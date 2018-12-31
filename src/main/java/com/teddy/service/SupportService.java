@@ -40,4 +40,14 @@ public class SupportService {
         supportDao.save(support);
         return true;
     }
+
+    public boolean selectSponsor(Long activityId, Long sponsorId){
+        Support support = supportDao.findByActivityAndSponsor(activityId, sponsorId);
+        if(support == null)
+            return false;
+
+        support.setChosen(true);
+        supportDao.update(support);
+        return true;
+    }
 }

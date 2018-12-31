@@ -57,10 +57,10 @@ public class ApplyActivityAction extends ActionSupport {
     private Map<String, Object> resultMap = new HashMap<>();
 
     @Setter
-    Long activityId;
+    Long studentId;
 
     @Setter
-    Long organizationId;
+    Long activityId;
 
     @Validations()
     @Action(value = "/applyActivity")
