@@ -19,6 +19,8 @@ public class ActivityVo {
     private String description;
     private Integer attendanceNum;
     private Integer volunteers;
+    private Integer remainAttendance;
+    private Integer remainVolunteer;
     private String volunteerRequired;
     private String sponsorRequired;
     private LocalDateTime startTime;
