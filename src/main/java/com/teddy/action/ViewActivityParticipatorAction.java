@@ -84,7 +84,7 @@ public class ViewActivityParticipatorAction extends ActionSupport {
         List<StudentVo> list = activityService.findActivityParticipator(activityId);
         if (list.size() != 0) {
             resultMap.put("message", "success");
-            data.put("StudentVo", list);
+            data.put("student", list);
             resultMap.put("data", data);
         } else {
             resultMap.put("message", "null");

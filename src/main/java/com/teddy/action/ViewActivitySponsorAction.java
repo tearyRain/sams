@@ -81,7 +81,7 @@ public class ViewActivitySponsorAction extends ActionSupport {
         List<SponsorVo> list = activityService.findActivitySponsor(activityId);
         if (list.size() != 0) {
             resultMap.put("message", "success");
-            data.put("SponsorVo", list);
+            data.put("sponsor", list);
             resultMap.put("data", data);
         } else {
             resultMap.put("message", "null");

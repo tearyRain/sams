@@ -83,7 +83,7 @@ public class ViewActivityVolunteerAction extends ActionSupport {
         List<StudentVo> list = activityService.findActivityVolunteer(activityId);
         if (list.size() != 0) {
             resultMap.put("message", "success");
-            data.put("StudentVo", list);
+            data.put("student", list);
             resultMap.put("data", data);
         } else {
             resultMap.put("message", "null");
