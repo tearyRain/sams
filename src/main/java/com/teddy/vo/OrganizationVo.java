@@ -23,9 +23,9 @@ public class OrganizationVo {
         return organizationView;
     }
 
-    public Organization toOrganization(){
+    public Organization toOrganization(OrganizationVo organizationVo) {
         Organization organization = new Organization();
-        BeanUtils.copyProperties(this, organization);
+        BeanUtils.copyProperties(organization, organizationVo);
         return organization;
     }
 }

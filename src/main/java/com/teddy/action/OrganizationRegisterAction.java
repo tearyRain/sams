@@ -2,17 +2,17 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.teddy.entity.ContactInfo;
+import com.teddy.service.OrganizationService;
+import com.teddy.vo.OrganizationVo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.opensymphony.xwork2.Action.SUCCESS;
 
 /**
  * <b>action:</b> organizationRegister.action <br>
@@ -22,7 +22,7 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
  * <h3>how to call</h3>
  * <pre>
  * {
- *     "studentVo" : &studentVo
+ *     "organization" : &OrganizationVo
  * }
  * </pre>
  * <h3>success call</h3>
@@ -55,35 +55,30 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 })
 
 public class OrganizationRegisterAction extends ActionSupport {
-    private static final long serialVersionUID = 1L;
+
+    @Autowired
+    private OrganizationService organizationService;
+
+    private Map<String, Object> data = new HashMap<>();
 
     @Getter
-    @Setter
     private Map<String, Object> resultMap = new HashMap<>();
 
-    @Getter
     @Setter
-    String name;
-
-    @Getter
-    @Setter
-    String password;
-
-    @Getter
-    @Setter
-    ContactInfo contact;
-
-    @Getter
-    @Setter
-    String email;
-
-    @Getter
-    @Setter
-    String description;
+    private OrganizationVo organization;
 
     @Validations()
     @Action(value = "/organizationRegister")
     public String execute(){
+        organization.setId(null);
+        Long id = organizationService.register(organization);
+        if (id != null) {
+            resultMap.put("message", "success");
+            data.put("id", id);
+            resultMap.put("data", data);
+        } else {
+            resultMap.put("message", "failure");
+        }
         return SUCCESS;
     }
 

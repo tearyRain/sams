@@ -4,19 +4,23 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.entity.Activity;
 import com.teddy.entity.Organization;
+import com.teddy.service.ActivityService;
+import com.teddy.vo.ActivityVo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * <b>action:</b> viewCommentActivity.action <br>
  * <b>function:</b> 查看所有需要评分的活动,分页查询 <br>
- * <b>progress:</b> todo
+ * <b>progress:</b> finish
  * <h2>call standard: </h2>
  * <h3>how to call</h3>
  * <pre>
@@ -58,6 +62,9 @@ import java.util.Map;
 public class ViewCommentActivityAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
 
+    @Setter
+    Long studentId;
+
     @Getter
     @Setter
     private Map<String, Object> resultMap = new HashMap<>();
@@ -65,7 +72,13 @@ public class ViewCommentActivityAction extends ActionSupport {
     @Getter
     @Setter
     Activity activity;
-
+    @Setter
+    Long pageSize;
+    @Setter
+    Long pageNo;
+    @Autowired
+    private ActivityService activityService;
+    private Map<String, Object> data = new HashMap<>();
     @Getter
     @Setter
     Organization organization;
@@ -73,6 +86,14 @@ public class ViewCommentActivityAction extends ActionSupport {
     @Validations()
     @Action(value = "/viewCommentActivity")
     public String execute(){
+        List<ActivityVo> list = activityService.findCommentActivity(pageNo, pageSize, studentId);
+        if (list.size() != 0) {
+            resultMap.put("message", "success");
+            data.put("activity", list);
+            resultMap.put("data", data);
+        } else {
+            resultMap.put("message", "null");
+        }
         return SUCCESS;
     }
 

@@ -58,6 +58,8 @@ public class OrganizationLoginAction extends ActionSupport {
     @Autowired
     private OrganizationService organizationService;
 
+    private HashMap<String, Object> data = new HashMap<>();
+
     @Getter
     private Map<String, Object> resultMap = new HashMap<>();
 
@@ -73,7 +75,6 @@ public class OrganizationLoginAction extends ActionSupport {
         Long id = organizationService.login(email, password);
         if (id != null) {
             resultMap.put("message", "success");
-            HashMap<String, Object> data = new HashMap<>();
             data.put("id", id);
             resultMap.put("data", data);
         } else {

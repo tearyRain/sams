@@ -2,7 +2,8 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.teddy.service.StudentService;
+import com.teddy.service.ActivityService;
+import com.teddy.vo.ActivityVo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -11,12 +12,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * <b>action:</b> viewParticipatedActivity.action <br>
  * <b>function:</b> 查询学生所参与的所有活动 <br>
- * <b>progress:</b> todo
+ * <b>progress:</b> finish
  * <h2>call standard:</h2>
  * <h3>how to call</h3>
  * <pre>
@@ -55,20 +57,26 @@ import java.util.Map;
 
 public class ViewParticipatedActivityAction extends ActionSupport {
 
-    @Autowired
-    private StudentService studentService;
-
     @Setter
     Long studentId;
-
+    @Autowired
+    private ActivityService activityService;
     @Getter
+    @Setter
     private Map<String, Object> resultMap = new HashMap<>();
+    private Map<String, Object> data = new HashMap<>();
 
     @Validations()
     @Action(value = "/viewParticipatedActivity")
     public String execute(){
-        resultMap.put("message", "success");
-        resultMap.put("data", studentService.findParticipatedActivity(studentId));
+        List<ActivityVo> list = activityService.findParticipatedActivity(studentId);
+        if (list.size() != 0) {
+            resultMap.put("message", "success");
+            data.put("activity", list);
+            resultMap.put("data", data);
+        } else {
+            resultMap.put("message", "null");
+        }
         return SUCCESS;
     }
 }

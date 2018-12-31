@@ -39,9 +39,9 @@ public class ActivityVo {
         return activityView;
     }
 
-    public Activity toActivity(){
+    public Activity toActivity(ActivityVo activityVo) {
         Activity activity = new Activity();
-        BeanUtils.copyProperties(this, activity);
+        BeanUtils.copyProperties(activity, activityVo);
         return activity;
     }
 
