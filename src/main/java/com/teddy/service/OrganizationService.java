@@ -49,6 +49,7 @@ public class OrganizationService {
         ContactInfo contact = new ContactInfo();
         BeanUtils.copyProperties(vo.getContact(), contact);
         organization.setContact(contact);
+        organizationDao.update(organization);
         return true;
     }
 

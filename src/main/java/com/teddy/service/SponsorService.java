@@ -1,6 +1,7 @@
 package com.teddy.service;
 
 import com.teddy.dao.SponsorDao;
+import com.teddy.entity.ContactInfo;
 import com.teddy.entity.Sponsor;
 import com.teddy.vo.SponsorVo;
 import org.springframework.beans.BeanUtils;
@@ -61,12 +62,18 @@ public class SponsorService {
             return false;
 
         BeanUtils.copyProperties(sponsorVo, sponsor);
+        ContactInfo contact = new ContactInfo();
+        BeanUtils.copyProperties(sponsorVo.getContact(), contact);
+        sponsor.setContact(contact);
         sponsorDao.update(sponsor);
         return true;
     }
 
     public boolean modifyPassword(Long id, String password){
         Sponsor sponsor = sponsorDao.findById(id);
+        if(sponsor == null)
+            return false;
+
         sponsor.setPassword(password);
         sponsorDao.update(sponsor);
         return true;
