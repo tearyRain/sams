@@ -22,15 +22,14 @@
 <div class="container">
 
 
-    <div class="row mt-2">
+    <div class="row mt-4">
 
-        <div class="col-md-8 mx-auto">
-            <h4 class="mb-3">商家注册</h4>
+        <div class="col-6 mx-auto">
+            <h4 class="mb-3 text-center">商家注册</h4>
             <form class="needs-validation" novalidate>
                 <div class="mb-2">
                     <div class="">
-                        <label for="name">名称</label>
-                        <input type="text" class="form-control" id="name" placeholder="" value="" required>
+                        <input type="text" class="form-control" id="name" placeholder="名称" value="" required>
                         <div class="invalid-feedback">
                             请填写名称
                         </div>
@@ -38,16 +37,14 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="email">公邮</label>
-                    <input type="email" class="form-control" id="email" required>
+                    <input type="email" class="form-control" id="email" placeholder="公邮" required>
                     <div class="invalid-feedback">
                         请填写合法邮箱
                     </div>
                 </div>
 
                 <div class="mb-2">
-                    <label for="password">密码</label>
-                    <input type="password" class="form-control" id="password" required>
+                    <input type="password" class="form-control" id="password" placeholder="密码" required>
                     <div class="invalid-feedback">
                         请填写密码
                     </div>
@@ -55,27 +52,24 @@
 
                 <div class="mb-2">
                     <div class="">
-                        <label for="address">地址 <span class="text-muted">(可选)</span></label>
-                        <input type="text" class="form-control" id="address" value="">
+                        <input type="text" class="form-control" id="address" placeholder="地址(可选)" value="">
                     </div>
                 </div>
 
                 <div class="mb-2">
                     <div class="">
-                        <label for="description">描述 <span class="text-muted">(可选)</span></label>
-                        <input type="text" class="form-control" id="description" value="">
+                        <input type="text" class="form-control" id="description" placeholder="描述(可选)" value="">
                     </div>
                 </div>
 
                 <hr class="mb-3">
 
                 <div class="mb-2">
-                    <label for="contactname">联系人姓名</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">@</span>
                         </div>
-                        <input type="text" class="form-control" id="contactname" required>
+                        <input type="text" class="form-control" id="contactname" placeholder="联系人姓名" required>
                         <div class="invalid-feedback" style="width: 100%;">
                             请填写联系人姓名
                         </div>
@@ -83,10 +77,9 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 mb-2">
-                        <label for="gender">性别</label>
+                    <div class="col-md-6 mb-1">
                         <select class="custom-select d-block w-100" id="gender" required>
-                            <option value="">请选择</option>
+                            <option value="">性别</option>
                             <option>男</option>
                             <option>女</option>
                         </select>
@@ -95,9 +88,8 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 mb-2">
-                        <label for="phone">电话</label>
-                        <input type="text" class="form-control" id="phone" placeholder="" required>
+                    <div class="col-md-6 mb-1">
+                        <input type="text" class="form-control" id="phone" placeholder="电话" required>
                         <div class="invalid-feedback">
                             请填写联系人电话
                         </div>
