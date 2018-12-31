@@ -31,7 +31,34 @@ public class StudentService {
     }
 
     public List<ActivityVo> findParticipatedActivity(Long id) {
+        if (studentDao.findById(id) == null) {
+            return null;
+        }
         List<Activity> list = studentDao.findParticipatedActivity(id);
+        List<ActivityVo> res = new ArrayList<>();
+        for (Activity activity : list) {
+            res.add(ActivityVo.fromActivity(activity));
+        }
+        return res;
+    }
+
+    public List<ActivityVo> findAppliedVolunteer(Long id) {
+        if (studentDao.findById(id) == null) {
+            return null;
+        }
+        List<Activity> list = studentDao.findAppliedVolunteer(id);
+        List<ActivityVo> res = new ArrayList<>();
+        for (Activity activity : list) {
+            res.add(ActivityVo.fromActivity(activity));
+        }
+        return res;
+    }
+
+    public List<ActivityVo> findCommentActivity(Long id) {
+        if (studentDao.findById(id) == null) {
+            return null;
+        }
+        List<Activity> list = studentDao.findCommentActivity(id);
         List<ActivityVo> res = new ArrayList<>();
         for (Activity activity : list) {
             res.add(ActivityVo.fromActivity(activity));

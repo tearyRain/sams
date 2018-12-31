@@ -35,10 +35,11 @@ public class ActivityService {
         } else {
             activity.setCheckStatus(CheckStatus.DECLINE);
         }
+        activityDao.save(activity);
         return true;
     }
 
-    public List<ActivityVo> viewActivity(Long pageNo, Long pageSize) {
+    public List<ActivityVo> viewActivity(Integer pageNo, Integer pageSize) {
         List<Activity> list = activityDao.findAllActivity(pageNo, pageSize);
         List<ActivityVo> res = new ArrayList<>();
         for (Activity activity : list) {
@@ -48,6 +49,8 @@ public class ActivityService {
     }
 
     public List<StudentVo> findActivityParticipator(Long id) {
+        if (activityDao.findById(id) == null)
+            return null;
         List<Student> list = activityDao.findActivityParticipator(id);
         List<StudentVo> res = new ArrayList<>();
         for (Student student : list) {
@@ -57,6 +60,8 @@ public class ActivityService {
     }
 
     public List<SponsorVo> findActivitySponsor(Long id) {
+        if (activityDao.findById(id) == null)
+            return null;
         List<Sponsor> list = activityDao.findActivitySponsor(id);
         List<SponsorVo> res = new ArrayList<>();
         for (Sponsor sponsor : list) {
@@ -66,6 +71,8 @@ public class ActivityService {
     }
 
     public List<StudentVo> findActivityVolunteer(Long id) {
+        if (activityDao.findById(id) == null)
+            return null;
         List<Student> list = activityDao.findActivityVolunteer(id);
         List<StudentVo> res = new ArrayList<>();
         for (Student student : list) {
@@ -74,30 +81,4 @@ public class ActivityService {
         return res;
     }
 
-    public List<ActivityVo> findAppliedVolunteer(Long pageNo, Long pageSize, Long id) {
-        List<Activity> list = activityDao.findAppliedVolunteer(pageNo, pageSize, id);
-        List<ActivityVo> res = new ArrayList<>();
-        for (Activity activity : list) {
-            res.add(ActivityVo.fromActivity(activity));
-        }
-        return res;
-    }
-
-    public List<ActivityVo> findCommentActivity(Long pageNo, Long pageSize, Long id) {
-        List<Activity> list = activityDao.findCommentActivity(pageNo, pageSize, id);
-        List<ActivityVo> res = new ArrayList<>();
-        for (Activity activity : list) {
-            res.add(ActivityVo.fromActivity(activity));
-        }
-        return res;
-    }
-
-    public List<ActivityVo> findParticipatedActivity(Long id) {
-        List<Activity> list = activityDao.findParticipatedActivity(id);
-        List<ActivityVo> res = new ArrayList<>();
-        for (Activity activity : list) {
-            res.add(ActivityVo.fromActivity(activity));
-        }
-        return res;
-    }
 }

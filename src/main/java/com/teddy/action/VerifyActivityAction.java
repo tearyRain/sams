@@ -2,7 +2,6 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.teddy.entity.Activity;
 import com.teddy.service.ActivityService;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,16 +52,13 @@ import java.util.Map;
 })
 
 public class VerifyActivityAction extends ActionSupport {
-    @Getter
-    @Setter
-    Activity activity;
 
+    @Autowired
+    private ActivityService activityService;
     @Setter
     boolean pass;
     @Setter
     Long activityId;
-    @Autowired
-    private ActivityService activityService;
     @Getter
     private Map<String, Object> resultMap = new HashMap<>();
 

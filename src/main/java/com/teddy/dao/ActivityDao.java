@@ -3,7 +3,6 @@ package com.teddy.dao;
 import com.teddy.entity.Activity;
 import com.teddy.entity.Sponsor;
 import com.teddy.entity.Student;
-import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -33,55 +31,35 @@ public class ActivityDao {
 
     public List<Student> findActivityParticipator(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        Query<Student> query = session.createQuery("select Student from Attendance where Activity.id = ?1 and Attendance.voluntary=false", Student.class);
+        Query<Student> query = session.createQuery(
+                "select student from Attendance where Activity.id = ?1 and voluntary=false", Student.class);
         query.setParameter(1, id);
         return query.list();
     }
 
     public List<Student> findActivityVolunteer(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        Query<Student> query = session.createQuery("select Student from Attendance where Activity.id = ?1 and Attendance .voluntary=true", Student.class);
+        Query<Student> query = session.createQuery(
+                "select student from Attendance where activity.id = ?1 and voluntary = true", Student.class);
         query.setParameter(1, id);
         return query.list();
     }
 
-    public List<Activity> findAppliedVolunteer(Long pageNo, Long pageSize, Long id) {
+    public List<Student> findAppliedVolunteer(Integer pageNo, Integer pageSize, Long activityId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("SELECT  Activity from Attendance where Student.id=?1 and Attendance.voluntary=true");
-        query.setParameter(1, id);
-
-        ScrollableResults scroll = query.scroll();
-        scroll.last();
-        int i = scroll.getRowNumber() + 1;
-
-        query.setFirstResult(Math.toIntExact(pageNo));
-        query.setMaxResults(Math.toIntExact(pageSize));
-
+        Query<Student> query = session.createQuery(
+                "SELECT student from Attendance " +
+                        "where activity.id = ?1 and voluntary = true ", Student.class);
+        query.setParameter(1, activityId);
+        query.setFirstResult((pageNo - 1) * pageSize);
+        query.setMaxResults(pageSize);
         return query.list();
     }
 
-    public List<Activity> findCommentActivity(Long pageNo, Long pageSize, Long id) {
+    public List<Sponsor> findActivitySponsor(Long activityId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("SELECT  Activity from Attendance where Student.id=?1 and" +
-                " Attendance.voluntary=true and Attendance .score=null and Activity.endTime>?2");
-        query.setParameter(1, id);
-        Date date = new Date();
-        query.setParameter(2, date.getTime());
-
-        ScrollableResults scroll = query.scroll();
-        scroll.last();
-        int i = scroll.getRowNumber() + 1;
-
-        query.setFirstResult(Math.toIntExact(pageNo));
-        query.setMaxResults(Math.toIntExact(pageSize));
-
-        return query.list();
-    }
-
-    public List<Sponsor> findActivitySponsor(Long id) {
-        Session session = sessionFactory.getCurrentSession();
-        Query<Sponsor> query = session.createQuery("select Sponsor from Attendance where Activity.id = ?1", Sponsor.class);
-        query.setParameter(1, id);
+        Query<Sponsor> query = session.createQuery("select sponsor from Support where activity.id = ?1", Sponsor.class);
+        query.setParameter(1, activityId);
         return query.list();
     }
 
@@ -99,30 +77,21 @@ public class ActivityDao {
 
     public int count(){
         Session session = sessionFactory.getCurrentSession();
-        return (int)session.createQuery("select count(*) from Activity as a").getSingleResult();
+        return (int) session.createQuery("select count(*) from Activity").getSingleResult();
     }
 
     public List<Activity> findParticipatedActivity(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        Query<Activity> query = session.createQuery("select Activity from Attendance where Student .id = ?1", Activity.class);
+        Query<Activity> query = session.createQuery("select activity from Attendance where student.id = ?1", Activity.class);
         query.setParameter(1, id);
         return query.list();
     }
 
-    public List<Activity> findAllActivity(Long pageNo, Long pageSize) {
+    public List<Activity> findAllActivity(Integer pageNo, Integer pageSize) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Activity ");
-
-        //得到滚动结果集
-        ScrollableResults scroll = query.scroll();
-        //滚动到最后一行
-        scroll.last();
-        int i = scroll.getRowNumber() + 1;
-
-        //设置分页位置
-        query.setFirstResult(Math.toIntExact(pageNo));
-        query.setMaxResults(Math.toIntExact(pageSize));
-
+        Query<Activity> query = session.createQuery("from Activity order by endTime desc", Activity.class);
+        query.setFirstResult((pageNo - 1) * pageSize);
+        query.setMaxResults(pageSize);
         return query.list();
     }
 
