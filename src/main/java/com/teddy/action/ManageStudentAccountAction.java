@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * <b>action:</b> manageStudentAccount.action <br>
  * <b>function:</b> 管理员管理学生账号 <br>
- * <b>progress:</b> todo
+ * <b>progress:</b> finish
  * <h2>call standard:</h2>
  * <h3>how to call</h3>
  * <pre>
