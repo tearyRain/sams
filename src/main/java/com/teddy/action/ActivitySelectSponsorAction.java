@@ -3,6 +3,7 @@ package com.teddy.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.service.ActivityService;
+import com.teddy.service.SupportService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
@@ -51,9 +52,9 @@ import java.util.Map;
         @InterceptorRef("defaultStack")
 })
 
-public class ActivitySelectSponsor extends ActionSupport {
+public class ActivitySelectSponsorAction extends ActionSupport {
     @Autowired
-    private ActivityService activityService;
+    private SupportService supportService;
 
     @Getter
     private Map<String, Object> resultMap = new HashMap<>();
@@ -67,7 +68,7 @@ public class ActivitySelectSponsor extends ActionSupport {
     @Validations()
     @Action(value = "/activitySelectSponsor")
     public String execute() {
-        boolean ret = activityService.selectSponsor(activityId, sponsorId);
+        boolean ret = supportService.selectSponsor(activityId, sponsorId);
         if (ret) {
             resultMap.put("data", null);
             resultMap.put("message", "success");

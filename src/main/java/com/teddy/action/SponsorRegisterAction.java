@@ -2,10 +2,12 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.teddy.entity.ContactInfo;
+import com.teddy.service.SponsorService;
+import com.teddy.vo.SponsorVo;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.convention.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -15,7 +17,7 @@ import java.util.Map;
 /**
  * <b>action:</b> sponsorRegister.action <br>
  * <b>function:</b> 赞助商注册 <br>
- * <b>progress:</b> todo
+ * <b>progress:</b> finish
  * <h2> call standard: </h2>
  * <h3>how to call</h3>
  * <pre>
@@ -54,39 +56,27 @@ import java.util.Map;
 })
 
 public class SponsorRegisterAction extends ActionSupport {
-    private static final long serialVersionUID = 1L;
+
+    @Autowired
+    SponsorService sponsorService;
 
     @Getter
-    @Setter
     private Map<String, Object> resultMap = new HashMap<>();
-
-    @Getter
     @Setter
-    String name;
-
-    @Getter
-    @Setter
-    String password;
-
-    @Getter
-    @Setter
-    String email;
-
-    @Getter
-    @Setter
-    ContactInfo contact;
-
-    @Getter
-    @Setter
-    String address;
-
-    @Getter
-    @Setter
-    String description;
+    SponsorVo sponsor;
+    private Map<String, Object> data = new HashMap<>();
 
     @Validations()
     @Action(value = "/sponsorRegister")
     public String execute(){
+        Long id = sponsorService.register(sponsor);
+        if (id != null) {
+            resultMap.put("message", "success");
+            data.put("id", id);
+            resultMap.put("data", data);
+        } else {
+            resultMap.put("message", "failure");
+        }
         return SUCCESS;
     }
 

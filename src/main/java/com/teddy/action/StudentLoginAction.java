@@ -15,8 +15,8 @@ import java.util.Map;
 
 /**
  * <b>action:</b> studentLogin.action <br>
- * <b>function:</b> 查询学生参与的活动 <br>
- * <b>progress:</b> todo
+ * <b>function:</b> 学生登录 <br>
+ * <b>progress:</b> finish
  * <h2> call standard: </h2>
  * <h3>how to call</h3>
  * <pre>
@@ -54,7 +54,6 @@ import java.util.Map;
         @InterceptorRef("defaultStack")
 })
 public class StudentLoginAction extends ActionSupport {
-    private static final long serialVersionUID = 1L;
 
     @Autowired
     private StudentService studentService;

@@ -2,7 +2,7 @@ package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
-import com.teddy.service.ActivityService;
+import com.teddy.service.StudentService;
 import com.teddy.vo.ActivityVo;
 import lombok.Getter;
 import lombok.Setter;
@@ -59,23 +59,24 @@ public class ViewParticipatedActivityAction extends ActionSupport {
 
     @Setter
     Long studentId;
+
     @Autowired
-    private ActivityService activityService;
+    private StudentService studentService;
+
     @Getter
-    @Setter
     private Map<String, Object> resultMap = new HashMap<>();
     private Map<String, Object> data = new HashMap<>();
 
     @Validations()
     @Action(value = "/viewParticipatedActivity")
     public String execute(){
-        List<ActivityVo> list = activityService.findParticipatedActivity(studentId);
-        if (list.size() != 0) {
+        List<ActivityVo> list = studentService.findParticipatedActivity(studentId);
+        if (list != null) {
             resultMap.put("message", "success");
             data.put("activity", list);
             resultMap.put("data", data);
         } else {
-            resultMap.put("message", "null");
+            resultMap.put("message", "failure");
         }
         return SUCCESS;
     }

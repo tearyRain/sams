@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * <b>action:</b> organizationRegister.action <br>
  * <b>function:</b> 组织注册 <br>
- * <b>progress:</b> todo
+ * <b>progress:</b> finish
  * <h2>call standard:</h2>
  * <h3>how to call</h3>
  * <pre>
