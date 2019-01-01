@@ -43,7 +43,10 @@ public class ActivityService {
         List<Activity> list = activityDao.findAllActivity(pageNo, pageSize);
         List<ActivityVo> res = new ArrayList<>();
         for (Activity activity : list) {
-            res.add(ActivityVo.fromActivity(activity));
+            ActivityVo vo = ActivityVo.fromActivity(activity);
+            vo.setRemainAttendance(vo.getAttendanceNum() - activityDao.countParticipation(activity.getId()));
+            vo.setRemainVolunteer(vo.getVolunteers() - activityDao.countVolunteers(activity.getId()));
+            res.add(vo);
         }
         return res;
     }
