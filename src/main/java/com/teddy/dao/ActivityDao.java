@@ -95,4 +95,19 @@ public class ActivityDao {
         return query.list();
     }
 
+    public Integer countVolunteers(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery(
+                "select count(*) from Attendance where activity.id = ?1 and voluntary = true");
+        query.setParameter(1, id);
+        return (Integer) query.getSingleResult();
+    }
+
+    public Integer countParticipation(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery(
+                "select count(*) from Attendance where activity.id = ?1 and voluntary = false");
+        query.setParameter(1, id);
+        return (Integer) query.getSingleResult();
+    }
 }
