@@ -47,7 +47,7 @@ import java.util.Map;
 
 @ParentPackage("json-default")
 @Namespace(value = "/")
-@Results({@Result(name = "success", type = "chain", params = {"root", "resultMap"}),
+@Results({@Result(name = "success", type = "json", params = {"root", "resultMap"}),
         @Result(name = "input", type = "chain", params = {"actionName", "validateError"})})
 @InterceptorRefs(value = {
         @InterceptorRef("json"),
@@ -66,6 +66,8 @@ public class OrganizationRegisterAction extends ActionSupport {
 
     @Setter
     private OrganizationVo organization;
+    @Setter
+    private String password;
 
     @Validations()
     @Action(value = "/organizationRegister")
