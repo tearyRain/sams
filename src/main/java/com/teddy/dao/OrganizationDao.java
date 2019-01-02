@@ -21,7 +21,7 @@ public class OrganizationDao {
     }
 
     public Organization findByEmail(String email) {
-        return sessionFactory.getCurrentSession().byNaturalId(Organization.class).load();
+        return sessionFactory.getCurrentSession().byNaturalId(Organization.class).using("email", email).load();
     }
 
     List<Organization> findByName(String name) {
