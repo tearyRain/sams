@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <base href="../static/">
+    <base href="../asset/">
     <link rel="icon" href="img/favicon.ico">
 
     <title>Signin Template for Bootstrap</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!--<link href="css/customized/index.css" rel="stylesheet">-->
+    <link href="css/customized/index.css" rel="stylesheet">
     <!--<link href="css/datatables/jquery.dataTables.css" rel="stylesheet">-->
     <!--<script src="js/datatables/jquery.dataTables.js"></script>-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
@@ -18,29 +18,45 @@
 
 </head>
 
-<body class="text-center">
-<table id="table1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Score</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>001</td>
-        <td>zhang</td>
-        <td>98</td>
-    </tr>
-    <tr>
-        <td>002</td>
-        <td>wang</td>
-        <td>99</td>
-    </tr>
-    </tbody>
-</table>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<body class="">
+<div class="lucidContainer">
+    <div class='multitab-section'>
+        <ul class='multitab-widget multitab-widget-content-tabs-id'>
+            <li class='multitab-tab'><a href='#lucidLogin'>Log In</a></li>
+            <li class='multitab-tab'><a href='#lucidRegistration'>Register</a></li>
+            <li class='multitab-tab'><a href='#lucidReset'>Reset</a></li>
+        </ul>
+        <div class='multitab-widget-content multitab-widget-content-widget-id' id='lucidLogin'>
+      <span class='sidebar' id='sidebartab1' preferred='yes'>
+<form method="post">
+		<input name="login_username" type="text" value="" title="Username" class="" placeholder="Username" id="" required="required">
+		<input name="login_password" type="password" title="Password" value="" class="" placeholder="Password" id="" required="required">
+		<input type="submit" name="login_submit" title="" class="" id="" value="Log In">
+		</form>
+      </span>
+        </div>
+        <div class='multitab-widget-content multitab-widget-content-widget-id' id='lucidRegistration'>
+      <span class='sidebar' id='sidebartab2' preferred='yes'>
+		<form method="post">
+		<input name="reg_username" type="text" title="" value="" class="" id="" placeholder="Username" required="required">
+		<input name="reg_email" type="email" title="" value="" class="" id="" placeholder="Email Address" required="required">
+		<input name="reg_password" type="password" title="" value="" class="" id="" placeholder="Password" required="required">
+		<input type="submit" name="reg_submit" title="" value="Register" id="" class="">
+		</form>
+      </span>
+        </div>
+        <div class='multitab-widget-content multitab-widget-content-widget-id' id='lucidReset'>
+      <span class='sidebar' id='sidebartab3' preferred='yes'>
+ <form method="post">
+		<input name="user_login" type="text" title="Username or Email" value="" class="" id="" placeholder="Username or Email" required="required">
+		<input type="submit" name="password_reset_submit" title="" value="Get New Password" class="">
+		</form>
+      </span>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/customized/index.js"></script>
 
 </body>
 </html>
