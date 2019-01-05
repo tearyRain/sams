@@ -1,7 +1,6 @@
 package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.service.SupportService;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +22,6 @@ import java.util.Map;
  * {
  *     "sponsorId" : _sponsorId,
  *     "activityId" : _activityId
- *     "description" : _description
  * }
  * </pre>
  * <h3>success call</h3>
@@ -48,8 +46,7 @@ import java.util.Map;
 @Results({@Result(name = "success", type = "chain", params = {"root", "resultMap"}),
         @Result(name = "input", type = "chain", params = {"actionName", "validateError"})})
 @InterceptorRefs(value = {
-        @InterceptorRef("json"),
-        @InterceptorRef("defaultStack")
+        @InterceptorRef("json")
 })
 
 public class SponsorSupportAction extends ActionSupport {
@@ -65,14 +62,10 @@ public class SponsorSupportAction extends ActionSupport {
     @Setter
     Long activityId;
 
-    @Setter
-    String description;
 
-
-    @Validations()
     @Action(value = "/sponsorSupport")
     public String execute(){
-        boolean result = supportService.applySupport(sponsorId, activityId, description);
+        boolean result = supportService.applySupport(sponsorId, activityId);
         if(result){
             resultMap.put("message", "success");
             resultMap.put("data", null);

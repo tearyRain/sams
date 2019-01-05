@@ -65,8 +65,11 @@ public class OrganizationRegisterAction extends ActionSupport {
     private Map<String, Object> resultMap = new HashMap<>();
 
     @Setter
+    @Getter
     private OrganizationVo organization;
+
     @Setter
+    @Getter
     private String password;
 
     @Validations()
