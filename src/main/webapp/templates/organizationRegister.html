@@ -84,7 +84,7 @@
                     </div>
 
                     <div class="col-md-6 mb-1">
-                        <input type="text" class="form-control" id="phone" placeholder="电话" required>
+                        <input class="form-control" id="telephone" placeholder="电话" required type="text">
                         <div class="invalid-feedback">
                             请填写联系人电话
                         </div>
@@ -126,8 +126,6 @@
         }, false);
     })();
 
-    alert("hello");
-
     function btnSubmit() {
         var message = {
             "organization": {
@@ -137,15 +135,17 @@
                 "contact": {
                     "gender": $('#contactGender').val() === '男' ? 'MALE' : 'FEMALE',
                     "name": $('#contactName').val(),
-                    "phone": $('#phone').val()
+                    "phone": String($('#telephone').val())
                 }
-            }
+            },
+
         };
-        console.log(JSON.stringify(message));
+        var msg = JSON.stringify(message);
+        console.log(msg);
         $.ajax({
             url: "../organizationRegister.action",
             type: "POST",
-            data: JSON.stringify(message),
+            data: msg,
             contentType: 'application/json',
             success: function (data, textStatus) {
                 alert(JSON.stringify(data));

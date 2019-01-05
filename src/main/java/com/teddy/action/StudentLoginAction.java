@@ -64,12 +64,14 @@ public class StudentLoginAction extends ActionSupport {
     private Map<String, Object> data = new HashMap<>();
 
     @Setter
+    @Getter
     Long studentId;
 
     @Setter
+    @Getter
     String password;
 
-    @Action(value = "/studentLogin")
+    @Action(value = "studentLogin")
     public String execute(){
         boolean checkResult = studentService.checkPassword(studentId, password);
         if (checkResult) {

@@ -2,13 +2,42 @@ package com.teddy.vo;
 
 import com.teddy.entity.ContactInfo;
 import com.teddy.entity.Gender;
-import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.struts2.json.annotations.JSON;
 import org.springframework.beans.BeanUtils;
 
-@Data
 @NoArgsConstructor
 public class ContactVo {
+    @JSON
+    public String getName() {
+        return name;
+    }
+
+    @JSON
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @JSON
+    public String getPhone() {
+        return phone;
+    }
+
+    @JSON
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @JSON
+    public Gender getGender() {
+        return gender;
+    }
+
+    @JSON
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     private String name;
     private String phone;
     private Gender gender;
@@ -24,4 +53,5 @@ public class ContactVo {
         BeanUtils.copyProperties(contactVo, contactInfo);
         return contactInfo;
     }
+
 }
