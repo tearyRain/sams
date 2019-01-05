@@ -1,7 +1,6 @@
 package com.teddy.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.service.OrganizationService;
 import com.teddy.vo.OrganizationVo;
 import lombok.Getter;
@@ -72,7 +71,10 @@ public class OrganizationRegisterAction extends ActionSupport {
     @Getter
     private String password;
 
-    @Validations()
+    @Getter
+    @Setter
+    private String phone;
+
     @Action(value = "/organizationRegister")
     public String execute(){
         organization.setId(null);
