@@ -22,7 +22,7 @@ public class SupportService {
     @Autowired
     private ActivityDao activityDao;
 
-    public boolean applySupport(Long sponsorId, Long activityId, String description) {
+    public boolean applySupport(Long sponsorId, Long activityId) {
         Support support = new Support();
 
         Sponsor sponsor = sponsorDao.findById(sponsorId);
@@ -39,7 +39,6 @@ public class SupportService {
 
         support.setSponsor(sponsor);
         support.setActivity(activity);
-        support.setDescription(description);
         support.setChosen(false);
         supportDao.save(support);
         return true;

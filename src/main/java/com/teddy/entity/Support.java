@@ -2,7 +2,6 @@ package com.teddy.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -23,9 +22,6 @@ public class Support {
 
     @ManyToOne
     private Activity activity;
-
-    @Type(type = "text")
-    private String description;
 
     private boolean chosen;
 
