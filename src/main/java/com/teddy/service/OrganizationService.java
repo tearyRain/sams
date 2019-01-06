@@ -58,12 +58,13 @@ public class OrganizationService {
         return organization != null && organization.getPassword().equals(password);
     }
 
-    public Long register(OrganizationVo vo) {
+    public Long register(OrganizationVo vo, String password) {
         vo.setId(null);
         Organization organization = organizationDao.findByEmail(vo.getEmail());
         if (organization != null) return null;
         Organization newOrganization = new Organization();
         BeanUtils.copyProperties(vo, newOrganization);
+        newOrganization.setPassword(password);
         organizationDao.save(newOrganization);
         return newOrganization.getId();
     }

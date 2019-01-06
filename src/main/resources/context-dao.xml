@@ -39,7 +39,7 @@
                 </prop>
                 <!-- 运行时重新创建表 -->
                 <prop key="hibernate.hbm2ddl.auto">
-                    create
+                    update
                 </prop>
                 <prop key="hibernate.show_sql">
                     false

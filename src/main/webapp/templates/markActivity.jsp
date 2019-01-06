@@ -1,21 +1,19 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="author" content="">
-    <base href="../../asset/">
-    <link rel="icon" href="img/favicon.ico">
+    <link rel="icon" href="../asset/img/favicon.ico">
     <title>Dashboard Template for Bootstrap</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/customized/dashboard.css" rel="stylesheet">
-    <link href="css/MDB/mdb.min.css" rel="stylesheet">
-    <link href="css/MDB/addons/datatables.min.css" rel="stylesheet">
-    <link href="css/datepicker/datepicker.css" rel="stylesheet">
-    <link href="css/form-validation.css" rel="stylesheet">
+    <link href="../asset/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../asset/css/customized/dashboard.css" rel="stylesheet">
+    <link href="../asset/css/MDB/mdb.min.css" rel="stylesheet">
+    <link href="../asset/css/MDB/addons/datatables.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -54,13 +52,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="javascript:void(0);" onclick="window.location.href='../templates/student/showAppliedActivity.html'">
+                                    <a class="nav-link" href="javascript:void(0);" onclick="window.location.href='../templates/showAppliedActivity.jsp'">
                                         <span data-feather="file-text"></span>
                                         查看已申请活动
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="javascript:void(0);" onclick="window.location.href='../templates/student/markActivity.html'">
+                                    <a class="nav-link active" href="javascript:void(0);" onclick="window.location.href='../templates/student/markActivity.jsp'">
                                         <span data-feather="star"></span>
                                         待评价活动
                                     </a>
@@ -81,7 +79,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="javascript:void(0);" onclick="window.location.href='../templates/student/studentAccount.html'">
+                                    <a class="nav-link" href="javascript:void(0);" onclick="window.location.href='../templates/student/studentAccount.html'">
                                         <span data-feather="settings"></span>
                                         修改密码
                                     </a>
@@ -94,84 +92,85 @@
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                <h3 class="h3 mt-1">修改密码</h3>
+                <h3 class="h3 mt-1">待评价活动</h3>
                 <hr>
-                <form class="needs-validation" novalidate>
-                    <div class="mb-2">
-                        <div class="mb-2">
-                            <label for="originPassword" class="text-muted h6">原密码</label>
-                            <input type="password" class="form-control" id="originPassword" placeholder="" required>
-                            <div class="invalid-feedback">
-                                请填写原密码
+                <table id="activityTable" class="table table-striped table-bordered btn-table" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th class="th-sm">活动名称
+                        </th>
+                        <th class="th-sm">组织
+                        </th>
+                        <th class="th-sm">开始时间
+                        </th>
+                        <th class="th-sm">结束时间
+                        </th>
+                        <th class="th-sm">活动打分
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a class="dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                十佳歌手大赛
+                            </a>
+                            <div class="dropdown-menu" >
+                                <div class="card-body col-sm-6">
+                                    <h6 class="card-title">活动描述</h6>
+                                    <p class="card-text">无活动描述。</p>
+                                </div>
                             </div>
-                        </div>
-
-
-                        <div class="mb-2">
-                            <label for="newPassword" class="text-muted h6">新密码</label>
-                            <input type="password" class="form-control" id="newPassword" placeholder="" required>
-                            <div class="invalid-feedback">
-                                请填写新密码
-                            </div>
-                        </div>
-
-
-                        <div class="mb-2">
-                            <label for="repeatedNewPassword" class="text-muted h6">重复新密码</label>
-                            <input type="password" class="form-control" id="repeatedNewPassword" placeholder="" required>
-                            <div class="invalid-feedback">
-                                请重复填写新密码
-                            </div>
-                        </div>
-
-                    </div>
-                    <hr class="mb-3">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">保存</button>
-                </form>
+                        </td>
+                        <td>宣传中心</td>
+                        <td>2017-12-01  12:24:12</td>
+                        <td>2018-01-01  12:24:12</td>
+                        <td>
+                            <select class="custom-select d-block w-100" required>
+                                <option class="text-muted">打分</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>活动名称
+                        </th>
+                        <th>组织
+                        </th>
+                        <th>开始时间
+                        </th>
+                        <th>结束时间
+                        </th>
+                        <th>活动打分
+                        </th>
+                    </tr>
+                    </tfoot>
+                </table>
 
             </main>
         </div>
     </div>
 
-    <script type="text/javascript" src="js/feather.min.js"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="../asset/js/feather.min.js"></script>
+    <script type="text/javascript" src="../asset/js/jquery.js"></script>
 
-    <script type="text/javascript" src="js/popper.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/datepicker/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="js/holder.min.js"></script>
+    <script type="text/javascript" src="../asset/js/popper.min.js"></script>
+    <script type="text/javascript" src="../asset/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../asset/js/MDB/mdb.min.js"></script>
+    <script type="text/javascript" src="../asset/js/MDB/addons/datatables.min.js"></script>
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-            'use strict';
-
-            window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
+        feather.replace()
     </script>
     <script>
-        feather.replace();
-        $('#birthday').datepicker({
-            viewMode: 2,
-            minViewMode: 0
-        });
-        $('#admittedYear').datepicker({
-            format: 'mm/yyyy',
-            viewMode: 2,
-            minViewMode: 1
+        $(document).ready(function () {
+            $('#activityTable').DataTable();
+            $('.dataTables_length').addClass('bs-select');
         });
     </script>
 

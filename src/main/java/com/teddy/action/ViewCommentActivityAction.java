@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * <b>action:</b> viewCommentActivity.action <br>
- * <b>function:</b> 查看学生所有需要评分的活动,分页查询 <br>
+ * <b>function:</b> 查看学生所有需要评分的活动 <br>
  * <b>progress:</b> finish
  * <h2>call standard: </h2>
  * <h3>how to call</h3>

@@ -1,5 +1,6 @@
 package com.teddy.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.teddy.entity.Student;
@@ -41,47 +42,75 @@ import java.util.Map;
  * </pre>
  */
 
-@Controller
 @Scope("prototype")
-
-@ParentPackage("json-default")
-@Namespace(value = "/")
-@Results({@Result(name = "success", type = "chain", params = {"root", "resultMap"}),
-        @Result(name = "input", type = "chain", params = {"actionName", "validateError"})})
-@InterceptorRefs(value = {
-        @InterceptorRef("json"),
-        @InterceptorRef("defaultStack")
-})
-
+@ParentPackage("struts-default")
+@Namespace("/templates")
+@Results({@Result(name = "success", type = "dispatcher", location = "/templates/studentAccount.jsp"),
+        @Result(name = "input", type = "dispatcher", location = "/templates/studentAccount.jsp")})
 public class ModifyStudentPasswordAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
 
     @Getter
     @Setter
-    private Map<String, Object> resultMap = new HashMap<>();
+    private String originPassword;
 
     @Getter
     @Setter
-    private Long studentId;
+    private String newPassword;
 
     @Getter
     @Setter
-    private String password;
+    private String repeatedNewPassword;
 
     @Autowired
     StudentService studentService;
 
+    @Getter
+    @Setter
+    Boolean notFirst = true;
+
+    @Getter
+    @Setter
+    Boolean oldWrong;
+
+    @Getter
+    @Setter
+    Boolean notSame;
+
+    @Getter
+    @Setter
+    Boolean modifySuccess;
+
     @Validations()
     @Action(value = "/modifyStudentPassword")
     public String execute(){
-        boolean result = studentService.modifyPassword(studentId, password);
-        if(result == true){
-            resultMap.put("message", "success");
-            resultMap.put("data", null);
+        Map<String, Object> session = ActionContext.getContext().getSession();
+        Long studentId = (Long)session.get("studentId");
+        if(studentService.checkPassword(studentId, originPassword)){
+            oldWrong = false;
         }
         else{
-            resultMap.put("message", "failure");
+            oldWrong = true;
         }
+
+        if(newPassword.equals(repeatedNewPassword)){
+            notSame = false;
+        }
+        else{
+            notSame = true;
+        }
+
+        if(oldWrong == false && notSame == false){
+            boolean result = studentService.modifyPassword(studentId, newPassword);
+            if (result){
+                modifySuccess = true;
+            } else{
+                modifySuccess = false;
+            }
+        }
+        else
+            modifySuccess = false;
+
         return SUCCESS;
     }
 }

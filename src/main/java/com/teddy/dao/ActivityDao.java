@@ -100,7 +100,7 @@ public class ActivityDao {
         Query query = session.createQuery(
                 "select count(*) from Attendance where activity.id = ?1 and voluntary = true");
         query.setParameter(1, id);
-        return (Integer) query.getSingleResult();
+        return ((Long)query.getSingleResult()).intValue();
     }
 
     public Integer countParticipation(Long id) {
@@ -108,6 +108,6 @@ public class ActivityDao {
         Query query = session.createQuery(
                 "select count(*) from Attendance where activity.id = ?1 and voluntary = false");
         query.setParameter(1, id);
-        return (Integer) query.getSingleResult();
+        return  ((Long)query.getSingleResult()).intValue();
     }
 }

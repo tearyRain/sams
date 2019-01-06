@@ -78,7 +78,7 @@ public class OrganizationRegisterAction extends ActionSupport {
     @Action(value = "/organizationRegister")
     public String execute(){
         organization.setId(null);
-        Long id = organizationService.register(organization);
+        Long id = organizationService.register(organization, password);
         if (id != null) {
             resultMap.put("message", "success");
             data.put("id", id);

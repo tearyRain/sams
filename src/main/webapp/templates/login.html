@@ -5,126 +5,112 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bookstore</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="fonts/ionicons.min.css">
-<link rel="stylesheet" href="css/customized/login.css">
+    <link rel="stylesheet" href="../asset/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../asset/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="../asset/css/customized/login.css">
 </head>
 
 <body class="text-center bg-light">
-    <div class="login-clean">
-        <form method="post" style="min-width:400px;">
-            <h2>学生活动管理系统</h2>
-            <div class="illustration"><i class="icon ion-ios-contact-outline" style="color:#505e6c;"></i>
+<div class="login-clean">
+    <div style="min-width:400px;">
+        <h2>学生活动管理系统</h2>
+        <div class="illustration"><i class="icon ion-ios-contact-outline" style="color:#505e6c;"></i>
+        </div>
+        <div class="card">
+
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active text-secondary" id="student-tab" data-toggle="tab" href="#student"
+                           role="tab" aria-controls="student" aria-selected="true">学生</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" id="organization-tab" data-toggle="tab" href="#organization"
+                           role="tab" aria-controls="organization" aria-selected="false">组织</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" id="sponsor-tab" data-toggle="tab" href="#sponsor" role="tab"
+                           aria-controls="sponsor" aria-selected="false">商家</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" id="admin-tab" data-toggle="tab" href="#admin" role="tab"
+                           aria-controls="admin" aria-selected="false">管理员</a>
+                    </li>
+                </ul>
             </div>
-            <div class="card">
 
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active text-secondary" id="student-tab" data-toggle="tab" href="#student" role="tab" aria-controls="student" aria-selected="true" >学生</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" id="organization-tab" data-toggle="tab" href="#organization" role="tab" aria-controls="organization" aria-selected="false">组织</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" id="sponsor-tab" data-toggle="tab" href="#sponsor" role="tab" aria-controls="sponsor" aria-selected="false">商家</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" id="admin-tab" data-toggle="tab" href="#admin" role="tab" aria-controls="admin" aria-selected="false">管理员</a>
-                    </li>
-                    </ul>
-                </div>
-
-                <div class="card-body">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="student" role="tabpanel" aria-labelledby="student-tab">
-                            <div>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="学号" id="stuId">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="password" name="password" placeholder="密码" id="stuPwd">
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-secondary btn-block" type="submit" id="stuLogin">登录</button>
-                                </div>
+            <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active p-0" id="student" role="tabpanel"
+                         aria-labelledby="student-tab">
+                        <form action="studentLogin.action" class="p-0 bg-transparent" method="post">
+                            <div class="form-group">
+                                <input class="form-control" type="number" placeholder="学号" name="studentId"
+                                       id="stuId" required>
                             </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="organization" role="tabpanel" aria-labelledby="organization-tab">
-                            <div>
-                                <div class="form-group">
-                                    <input class="form-control" type="email" name="email" placeholder="邮箱" id="orgEmail">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="password" name="password" placeholder="密码" id="orgPwd">
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-secondary btn-block" type="submit" id="orgLogin">登录</button>
-                                </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="password" placeholder="密码"
+                                       id="stuPwd" required>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="sponsor" role="tabpanel" aria-labelledby="sponsor-tab">
+                            <div class="form-group">
+                                <button class="btn btn-secondary btn-block" type="submit" id="stuLogin">登录</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="organization" role="tabpanel" aria-labelledby="organization-tab">
+                        <form action="organizationLogin.action" class="p-0 bg-transparent" method="post">
+                            <div class="form-group">
+                                <input class="form-control" type="email" name="email" placeholder="邮箱" id="orgEmail">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="password" placeholder="密码"
+                                       id="orgPwd">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-secondary btn-block" type="submit" id="orgLogin">登录</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="sponsor" role="tabpanel" aria-labelledby="sponsor-tab">
+                        <form action="sponsorLogin.action" class="p-0 bg-transparent" method="post">
                             <div class="form-group">
                                 <input class="form-control" type="email" name="email" placeholder="邮箱" id="sponEmail">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" type="password" name="password" placeholder="密码" id="sponPwd">
+                                <input class="form-control" type="password" name="password" placeholder="密码"
+                                       id="sponPwd">
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-secondary btn-block" type="submit" id="sponLogin">登录</button>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="admin-tab">
-                            <div>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="账号" id="admId">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="password" name="password" placeholder="密码" id="admPwd">
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-secondary btn-block" type="submit" id="admLogin">登录</button>
-                                </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="admin" role="tabpanel" aria-labelledby="admin-tab">
+                        <form action="sponsorLogin.action" class="p-0 bg-transparent" method="post">
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="账号" id="admId">
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="password" placeholder="密码"
+                                       id="admPwd">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-secondary btn-block" type="submit" id="admLogin">登录</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
             </div>
-        </form>
+
+        </div>
     </div>
+</div>
 
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/customized/theme.js"></script>
-<script type="text/javascript" src="js/customized/login.js"></script>
-    <script>
-        $('#stuLogin').click(
-            function () {
-                data = {
-                    studentId: $('#stuId').val(),
-                    password: $('#stuPwd').val()
-                }
-
-                $.ajax({
-                    url: "/studentLogin.action",
-                    type: "POST",
-                    data: data,
-                    contentType: 'application/json',
-                    success: function (data, textStatus) {
-                        $(window).attr('location', '../student/index.html');
-                    },
-                    error: function () {
-                        $(window).attr('location', '../templates/login.html');
-                    },
-                    dataType: "json"
-                });
-            }
-        );
-
-
-    </script>
+<script type="text/javascript" src="../asset/js/jquery.js"></script>
+<script type="text/javascript" src="../asset/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../asset/js/customized/theme.js"></script>
+<script type="text/javascript" src="../asset/js/customized/login.js"></script>
 </body>
 
 </html>

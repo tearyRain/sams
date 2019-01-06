@@ -44,14 +44,10 @@ import java.util.Map;
 @Controller
 @Scope("prototype")
 
-@ParentPackage("json-default")
-@Namespace(value = "/")
-@Results({@Result(name = "success", type = "chain", params = {"root", "resultMap"}),
-        @Result(name = "input", type = "chain", params = {"actionName", "validateError"})})
-@InterceptorRefs(value = {
-        @InterceptorRef("json"),
-        @InterceptorRef("defaultStack")
-})
+@ParentPackage("struts-default")
+@Namespace(value = "/templates")
+@Results({@Result(name = "success", type = "dispatcher", location = "student/applyActivity.jsp"),
+        @Result(name = "input", type = "dispatcher", location = "student/applyActivity.jsp")})
 
 public class ApplyActivityAction extends ActionSupport {
     private static final long serialVersionUID = 1L;

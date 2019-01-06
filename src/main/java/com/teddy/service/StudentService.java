@@ -64,6 +64,14 @@ public class StudentService {
         return true;
     }
 
+    public boolean updatePhone(Long id, String phone){
+        Student student = studentDao.findById(id);
+        if (student == null) return false;
+        student.setPhone(phone);
+        studentDao.update(student);
+        return true;
+    }
+
     public boolean modifyPassword(Long studentId, String password){
         Student student = studentDao.findById(studentId);
         if(student == null)

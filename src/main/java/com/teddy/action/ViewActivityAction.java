@@ -48,21 +48,13 @@ import java.util.Map;
 @Controller
 @Scope("prototype")
 
-@ParentPackage("json-default")
-@Namespace(value = "/")
-@Results({@Result(name = "success", type = "chain", params = {"root", "resultMap"}),
-        @Result(name = "input", type = "chain", params = {"actionName", "validateError"})})
-@InterceptorRefs(value = {
-        @InterceptorRef("json"),
-        @InterceptorRef("defaultStack")
-})
+@ParentPackage("struts-default")
+@Namespace(value = "/templates")
+@Results({@Result(name = "success", type = "dispatcher", location = "/templates/showAllActivity.jsp"),
+        @Result(name = "input", type = "dispatcher", location = "/templates/    showAllActivity.jsp")})
 
 public class ViewActivityAction extends ActionSupport {
 
-    @Setter
-    Integer pageNo;
-    @Setter
-    Integer pageSize;
     @Getter
     @Setter
     Organization organization;
@@ -71,11 +63,14 @@ public class ViewActivityAction extends ActionSupport {
     @Getter
     private Map<String, Object> resultMap = new HashMap<>();
     private Map<String, Object> data = new HashMap<>();
+    @Getter
+    @Setter
+    List<ActivityVo> list;
 
     @Validations()
-    @Action(value = "/viewActivity")
+    @Action(value = "viewActivity")
     public String execute() {
-        List<ActivityVo> list = activityService.viewActivity(pageNo, pageSize);
+        list = activityService.viewActivity(1, 50000);
         resultMap.put("message", "success");
         data.put("activity", list);
         resultMap.put("data", data);
